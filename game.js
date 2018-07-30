@@ -236,7 +236,9 @@ let startNewGame = function () {
   timeStarted = Date.now();
   player1.hp = 10;
   frameCount = 0;
+  score = 0;
   enemyList = {};
+  weaponsFire = {};
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
