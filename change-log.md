@@ -3,7 +3,7 @@
 - For every 10 enemy shot and destroyed player regains 1 hp.
 - Changed background to black.
 - Changed projectile weapons color to silver.
-- 
+- Hide mouse cursor when inside canvas element.
 
 # 2018-07-29
 - Created a top down space shooter based on the raining chain tutorial on youtube.  Current features include:
