@@ -10,6 +10,7 @@
 
 const ctx = document.getElementById('ctx').getContext('2d');
 ctx.font = '30px "Courier New", Courier, monospace';
+ctx.fillStyle = 'white';
 
 let canvasHeight = 700; // Y
 let canvasWidth = 500; // X
@@ -18,6 +19,7 @@ let enemyList = {};
 let frameCount = 0;
 let weaponsFire = {};
 let score = 0;
+let hpRegen = 0;
 
 let player1 = {
   x: 250,
@@ -46,7 +48,7 @@ let Enemy = function (id, x, y, spdX, spdY, width, height, color) {
   enemyList[id] = enemy;
 };
 
-let Weapon = function (id, x, y, spdX, spdY, width, height, color, type) {
+let Weapon = function (id, x, y, spdX, spdY, width, height, color, type, fireRate, damage) {
   let weapon = {
     id: id,
     x: x,
@@ -57,6 +59,8 @@ let Weapon = function (id, x, y, spdX, spdY, width, height, color, type) {
     height: height,
     color: color,
     type: type,
+    fireRate: fireRate,
+    damage: damage,
   }
   weaponsFire[id] = weapon;
 }
@@ -165,6 +169,7 @@ let update = function () {
     }
     if (isColliding) {
       console.log('Collision!');
+      delete enemyList[key];
       player1.hp = player1.hp - 1;
     }
   }
@@ -184,10 +189,16 @@ let update = function () {
       if (isColliding2) {
         // console.log('Enemy hit!');
         score++;
+        hpRegen++;
         delete weaponsFire[key1];
         delete enemyList[key2];
       }
     }
+  }
+
+  if(hpRegen == 10){
+    player1.hp++;
+    hpRegen = 0;
   }
 
   if (player1.hp <= 0) {
@@ -225,7 +236,7 @@ let fireWeapon = function (mouseX, mouseY) {
   let width = 1;
   let spdX = 0;
   let spdY = -7;
-  let color = 'black';
+  let color = 'silver';
   let type = 'projectile';
 
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
@@ -236,7 +247,9 @@ let startNewGame = function () {
   timeStarted = Date.now();
   player1.hp = 10;
   frameCount = 0;
+  score = 0;
   enemyList = {};
+  weaponsFire = {};
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
