@@ -1,13 +1,5 @@
 'use strict';
 
-// document.body.onload = createCanvas();
-
-// function createCanvas() {
-//   let createCTX = document.createElement('canvas');
-// // createCTX.appendChild
-// createCTX.appendChild();
-// }
-
 const ctx = document.getElementById('ctx').getContext('2d');
 ctx.font = '30px "Courier New", Courier, monospace';
 ctx.fillStyle = 'white';
@@ -16,10 +8,14 @@ let canvasHeight = 700; // Y
 let canvasWidth = 500; // X
 let timeStarted = Date.now();
 let enemyList = {};
-let frameCount = 0;
 let weaponsFire = {};
+let frameCount = 0;
 let score = 0;
 let hpRegen = 0;
+let firing = false;
+let space = false;
+let startedFiring = 0;
+let fireRate = 0;
 
 let player1 = {
   x: 250,
@@ -47,54 +43,6 @@ let Enemy = function (id, x, y, spdX, spdY, width, height, color) {
   };
   enemyList[id] = enemy;
 };
-
-let Weapon = function (id, x, y, spdX, spdY, width, height, color, type, fireRate, damage) {
-  let weapon = {
-    id: id,
-    x: x,
-    spdX: spdX,
-    y: y,
-    spdY: spdY,
-    width: width,
-    height: height,
-    color: color,
-    type: type,
-    fireRate: fireRate,
-    damage: damage,
-  }
-  weaponsFire[id] = weapon;
-}
-
-document.onmousemove = function (mouse) {
-  let mouseX = mouse.clientX - document.getElementById('ctx').getBoundingClientRect().left;
-  let mouseY = mouse.clientY - document.getElementById('ctx').getBoundingClientRect().top;
-
-  /*Prevents player from leaving field of play*/
-  //Left
-  if (mouseX < player1.width / 2)
-    mouseX = player1.width / 2;
-  //Right
-  if (mouseX > canvasWidth - player1.width / 2)
-    mouseX = canvasWidth - player1.width / 2;
-  //Top
-  if (mouseY < player1.height / 2)
-    mouseY = player1.height / 2;
-  //Bottom
-  if (mouseY > canvasHeight - player1.height / 2)
-    mouseY = canvasHeight - player1.height / 2;
-
-  player1.x = mouseX
-  player1.y = mouseY
-
-  document.onmousedown = function (mouse) {
-    // console.log('Firing weapon!');
-    fireWeapon(mouseX, mouseY)
-  }
-
-  // console.log('x: ', mouseX, 'y: ', mouseY);
-}
-
-
 
 let updateEntity = function (update) {
   updateEntityPosition(update);
@@ -168,7 +116,7 @@ let update = function () {
       delete enemyList[key];
     }
     if (isColliding) {
-      console.log('Collision!');
+      // console.log('Collision!');
       delete enemyList[key];
       player1.hp = player1.hp - 1;
     }
@@ -182,7 +130,6 @@ let update = function () {
       delete weaponsFire[key1];
     }
     // console.log(weaponsFire[key1])
-
     for (let key2 in enemyList) {
       let isColliding2 = collisionDetection(enemyList[key2], weaponsFire[key1]);
       // console.log(enemyList[key2], weaponsFire[key1])
@@ -194,6 +141,21 @@ let update = function () {
         delete enemyList[key2];
       }
     }
+  }
+  
+  if(firing == true){
+
+    if(space == true){
+      fireWeapon2(mouse_X, mouse_Y)
+    } else if(startedFiring < 2){
+      fireWeapon(mouse_X, mouse_Y)
+    }
+
+    
+    if(startedFiring > fireRate){
+      startedFiring = 0;
+    }
+    startedFiring++;
   }
 
   if(hpRegen == 10){
@@ -228,21 +190,6 @@ let randomlyGenerateEnemy = function () {
   Enemy(id, x, y, spdX, spdY, width, height, color)
 }
 
-let fireWeapon = function (mouseX, mouseY) {
-  let id = Math.random();
-  let x = mouseX;
-  let y = mouseY;
-  let height = 5;
-  let width = 1;
-  let spdX = 0;
-  let spdY = -7;
-  let color = 'silver';
-  let type = 'projectile';
-
-  // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
-  Weapon(id, x, y, spdX, spdY, width, height, color, type);
-}
-
 let startNewGame = function () {
   timeStarted = Date.now();
   player1.hp = 10;
@@ -257,4 +204,3 @@ let startNewGame = function () {
 startNewGame();
 
 setInterval(update, 40); //40ms is equivelint to 24fps
-

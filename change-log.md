@@ -4,6 +4,10 @@
 - Changed background to black.
 - Changed projectile weapons color to silver.
 - Hide mouse cursor when inside canvas element.
+- Seperated controls to its own file.
+- Seperated weapons to its own file.
+- Disabled right click menue.
+- Added a secondary fire mode as a new weapon constructor test.
 
 # 2018-07-29
 - Created a top down space shooter based on the raining chain tutorial on youtube.  Current features include:
