@@ -1,6 +1,7 @@
 # 2018-07-31
 - Added ability for multiple weapon modes selectable by the 1, 2 keys.  More to come.
-- 
+- Added a dual fire mode set to key 3.
+- Added spread fire mode to key 4.
 
 # 2018-07-30
 - When enemy hits player it is destroyed and only does 1 damage.

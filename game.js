@@ -142,6 +142,12 @@ let fireSelectedWeapon = function(mouse_X, mouse_Y) {
   if(weaponSelect == 1){
     fireWeapon2(mouse_X, mouse_Y);
   }
+  if(weaponSelect == 2){
+    fireWeapon3(mouse_X, mouse_Y);
+  }
+  if(weaponSelect == 3){
+    fireWeapon4(mouse_X, mouse_Y);
+  }
 }
 
 let update = function () {
