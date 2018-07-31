@@ -16,6 +16,7 @@ let firing = false;
 let space = false;
 let startedFiring = 0;
 let fireRate = 0;
+let weaponSelect = 0;
 
 let player1 = {
   x: 250,
@@ -96,69 +97,88 @@ let collisionDetection = function (entity1, entity2) {
   return testCollisionRectRect(rect1, rect2);
 };
 
+let playerEnemyHitDetection = function() {
+  for (let key in enemyList) {
+    updateEntity(enemyList[key]);
+    let isColliding = collisionDetection(player1, enemyList[key]);
+    if (enemyList[key].y > canvasHeight) {
+      delete enemyList[key];
+    }
+    if (isColliding) {
+      delete enemyList[key];
+      player1.hp = player1.hp - 1;
+    }
+  }
+}
+
+let playerWeaponHitDetection = function(){
+  for (let key1 in enemyList) {
+    for (let key2 in weaponsFire) {
+      let isColliding2 = collisionDetection(weaponsFire[key2], enemyList[key1]);
+      if (isColliding2) {
+        score++;
+        hpRegen++;
+        delete weaponsFire[key2];
+        delete enemyList[key1];
+        break;
+      }
+    }
+  }
+}
+
+let strayBulletCleanup = function(){
+  for (let key1 in weaponsFire) {
+    updateEntity(weaponsFire[key1]);
+    if (weaponsFire[key1].y <= 1) {
+      delete weaponsFire[key1];
+    }
+  }
+}
+
+let fireSelectedWeapon = function(mouse_X, mouse_Y) {
+  if(weaponSelect == 0){
+    fireWeapon(mouse_X, mouse_Y);
+  }
+  if(weaponSelect == 1){
+    fireWeapon2(mouse_X, mouse_Y);
+  }
+  if(weaponSelect == 2){
+    fireWeapon3(mouse_X, mouse_Y);
+  }
+  if(weaponSelect == 3){
+    fireWeapon4(mouse_X, mouse_Y);
+  }
+}
+
 let update = function () {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);//clears old data
   frameCount++;
 
   if (frameCount % 100 === 0) {
-    for(let i = 0; i <= Math.random() * 3; i++){
+    for (let i = 0; i <= Math.random() * 3; i++) {
       randomlyGenerateEnemy();
     }
   }
 
-  for (let key in enemyList) {
-    updateEntity(enemyList[key]);
+  playerEnemyHitDetection();
+  playerWeaponHitDetection();
+  strayBulletCleanup();
 
-    let isColliding = collisionDetection(player1, enemyList[key]);
-    // console.log(player1, enemyList[key])
-    if (enemyList[key].y > canvasHeight) {
-      // console.log('weapon out of bouds');
-      delete enemyList[key];
-    }
-    if (isColliding) {
-      // console.log('Collision!');
-      delete enemyList[key];
-      player1.hp = player1.hp - 1;
-    }
-  }
+  if (firing == true) {
 
-  for (let key1 in weaponsFire) {
-    updateEntity(weaponsFire[key1]);
-    // console.log(weaponsFire[key1]);
-    if (weaponsFire[key1].y < 0) {
-      // console.log('weapon out of bouds');
-      delete weaponsFire[key1];
-    }
-    // console.log(weaponsFire[key1])
-    for (let key2 in enemyList) {
-      let isColliding2 = collisionDetection(enemyList[key2], weaponsFire[key1]);
-      // console.log(enemyList[key2], weaponsFire[key1])
-      if (isColliding2) {
-        // console.log('Enemy hit!');
-        score++;
-        hpRegen++;
-        delete weaponsFire[key1];
-        delete enemyList[key2];
-      }
-    }
-  }
-  
-  if(firing == true){
-
-    if(space == true){
+    if (space == true) {
       fireWeapon2(mouse_X, mouse_Y)
-    } else if(startedFiring < 2){
-      fireWeapon(mouse_X, mouse_Y)
+    } else if (startedFiring < 2) {
+      // fireWeapon(mouse_X, mouse_Y)
+      fireSelectedWeapon(mouse_X, mouse_Y);
     }
-
-    
-    if(startedFiring > fireRate){
+    if (startedFiring > fireRate) {
       startedFiring = 0;
     }
     startedFiring++;
   }
 
-  if(hpRegen == 10){
+  if (hpRegen == 10) {
     player1.hp++;
     hpRegen = 0;
   }

@@ -64,6 +64,14 @@ document.onkeydown = function(event) {
     paused = !paused;
   } else if (event.keyCode === 32) { //space
     space = true;
+  } else if (event.keyCode === 49) { // 1
+    weaponSelect = 0;
+  } else if (event.keyCode === 50) { // 2
+    weaponSelect = 1;
+  } else if (event.keyCode === 51) { // 3
+    weaponSelect = 2;
+  } else if (event.keyCode === 52) { // 4
+    weaponSelect = 3;
   }
 };
 

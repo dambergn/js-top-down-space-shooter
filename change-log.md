@@ -1,3 +1,8 @@
+# 2018-07-31
+- Added ability for multiple weapon modes selectable by the 1, 2 keys.  More to come.
+- Added a dual fire mode set to key 3.
+- Added spread fire mode to key 4.
+
 # 2018-07-30
 - When enemy hits player it is destroyed and only does 1 damage.
 - For every 10 enemy shot and destroyed player regains 1 hp.
@@ -8,6 +13,7 @@
 - Seperated weapons to its own file.
 - Disabled right click menue.
 - Added a secondary fire mode as a new weapon constructor test.
+- Fixed weapon destroying enemy error from console log resulting in screen flashing.
 
 # 2018-07-29
 - Created a top down space shooter based on the raining chain tutorial on youtube.  Current features include:
