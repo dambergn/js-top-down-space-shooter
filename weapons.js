@@ -40,7 +40,7 @@ let fireWeapon2 = function (mouseX, mouseY) {
   let x = mouseX;
   let y = mouseY;
   let height = 5;
-  let width = 1;
+  let width = 1;9
   let spdX = 0;
   let spdY = -14;
   let color = 'orange';
@@ -53,4 +53,3 @@ let fireWeapon2 = function (mouseX, mouseY) {
   Weapon(id, x, y, spdX, spdY, width, height, color, type, fireRate, damage);
 }
 
-// module.exports.fireWeapon = fireWeapon;
