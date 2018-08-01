@@ -143,10 +143,10 @@ let fireSelectedWeapon = function(mouse_X, mouse_Y) {
     fireWeapon2(mouse_X, mouse_Y);
   }
   if(weaponSelect == 2){
-    fireWeapon3(mouse_X, mouse_Y);
+    fireWeapon4(mouse_X, mouse_Y);
   }
   if(weaponSelect == 3){
-    fireWeapon4(mouse_X, mouse_Y);
+    fireWeapon5(mouse_X, mouse_Y);
   }
 }
 
@@ -164,12 +164,9 @@ let update = function () {
   playerWeaponHitDetection();
   strayBulletCleanup();
 
+  // Controls fireing rate
   if (firing == true) {
-
-    if (space == true) {
-      fireWeapon2(mouse_X, mouse_Y)
-    } else if (startedFiring < 2) {
-      // fireWeapon(mouse_X, mouse_Y)
+    if (startedFiring == 1) {
       fireSelectedWeapon(mouse_X, mouse_Y);
     }
     if (startedFiring > fireRate) {
