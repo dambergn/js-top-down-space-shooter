@@ -3,9 +3,19 @@
 let mouse_X = {};
 let mouse_Y = {};
 
+// const reset = document.getElementById('reset-button')
+// if(reset){
+//   console.log('reset button clicked!')
+// }
+
+// var somediv = document.getElementById("info")
+// disableSelection(somediv)
+
 document.oncontextmenu = function() {
   return false;
 }
+
+ctx.onselectstart = function () { return false; }
 
 document.onmousemove = function (mouse) {
   let mouseX = mouse.clientX - document.getElementById('ctx').getBoundingClientRect().left;
@@ -38,8 +48,10 @@ document.oncontextmenu = function() { // Disables right click menue
   
 }
 
-document.onmousedown = function (mouse) {
-  firing = true;
+document.onmousedown = function () {
+  if(mouse_X <= canvasWidth && mouse_Y <= canvasHeight){
+    firing = true;
+  }
 }
 
 document.onmouseup = function (mouse) {

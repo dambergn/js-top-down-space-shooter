@@ -7,3 +7,4 @@ Use the mouse to move the ship arround and click to fire the weapon.
 
 # Known bugs
 [X]weapon deletion sometimes results in error unable to read property of x, does not effect gameplay.
+[]Ensure the click is only registered when inside play area.

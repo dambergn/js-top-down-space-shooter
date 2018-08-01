@@ -129,7 +129,7 @@ let playerWeaponHitDetection = function(){
 let strayBulletCleanup = function(){
   for (let key1 in weaponsFire) {
     updateEntity(weaponsFire[key1]);
-    if (weaponsFire[key1].y <= 1) {
+    if (weaponsFire[key1].y <= 1 || weaponsFire[key1].x > canvasWidth || weaponsFire[key1].x < 0) {
       delete weaponsFire[key1];
     }
   }

@@ -1,8 +1,19 @@
+# Things to add or improve.
+[]Create different types of enemy with unique aspects.
+[]Give enemy different ammounts of HP.
+[]Change weapon damage.
+[]Add dynamic and changeable player ships.
+[]Detect window size and adjust play window accordingly.
+
+# 2018-08-01
+- 
+
 # 2018-07-31
 - Added ability for multiple weapon modes selectable by the 1, 2 keys.  More to come.
 - Added a dual fire mode set to key 3.
 - Added spread fire mode to key 4.
 - Added a not to great lazer beam weapon, needs work.
+- Preventing weapons fire from bouncing off the walls.
 
 # 2018-07-30
 - When enemy hits player it is destroyed and only does 1 damage.
