@@ -6,6 +6,7 @@
 []Detect window size and adjust play window accordingly.
 
 # 2018-08-01
+- Prevent text select messing with canvas game.
 - 
 
 # 2018-07-31
