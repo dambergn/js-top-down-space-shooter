@@ -96,3 +96,22 @@ let fireWeapon4 = function (mouseX, mouseY) {
   Weapon(id + 2, x - 3 , y, spdX + 5, spdY, width, height, color, type, fireRate, damage);
   Weapon(id + 3, x + 3 , y, spdX - 5, spdY, width, height, color, type, fireRate, damage);
 }
+
+// Lazer Beam.
+let fireWeapon5 = function (mouseX, mouseY) {
+  let id = Math.random();
+  let x = mouseX;
+  let y = mouseY;
+  let height = 200;
+  let width = 1;
+  let spdX = 0;
+  let spdY = -20;
+  let color = 'red';
+  let type = 'beam';
+  let damage = 1;
+
+  fireRate = 25;
+
+  // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
+  Weapon(id, x, y - 100, spdX, spdY, width, height, color, type, fireRate, damage);
+}
