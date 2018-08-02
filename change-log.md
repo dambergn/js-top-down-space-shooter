@@ -3,11 +3,11 @@
 []Give enemy different ammounts of HP.
 []Change weapon damage.
 []Add dynamic and changeable player ships.
-[]Detect window size and adjust play window accordingly.
+[/]Detect window size and adjust play window accordingly.
 
 # 2018-08-01
 - Prevent text select messing with canvas game.
-- 
+- Added ability to change window size and canvas adjusts accordingly.
 
 # 2018-07-31
 - Added ability for multiple weapon modes selectable by the 1, 2 keys.  More to come.
