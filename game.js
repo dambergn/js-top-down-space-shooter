@@ -20,7 +20,17 @@ let space = false;
 let startedFiring = 0;
 let fireRate = 0;
 let weaponSelect = 0;
-let _isMobile = false;
+let isMobile = false;
+
+if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
+  console.log('mobile deveice')
+  // alert("Mobile Device");
+  isMobile = true;
+  // _isMobile = true;
+} else {
+  isMobile = false;
+  // _isMobile = false;
+}
 
 function setCanvas() {
   windowHeight = window.innerHeight;
