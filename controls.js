@@ -2,6 +2,7 @@
 
 let mouse_X = {};
 let mouse_Y = {};
+let isMobile = false;
 
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
   console.log('mobile deveice')
