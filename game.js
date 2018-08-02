@@ -1,18 +1,13 @@
 'use strict';
 
-
-
 const ctx = document.getElementById('ctx').getContext('2d');
 
 let windowHeight = window.innerHeight;
 let windowWidth = window.innerWidth;
-
-let canvasHeight = window.innerHeight - 100; // Y
+let canvasHeight = window.innerHeight - 50; // Y
 let canvasWidth = 500; // X
-document.getElementById('ctx').height = canvasHeight;
-document.getElementById('ctx').width = canvasWidth;
-ctx.font = '30px "Courier New", Courier, monospace';
-ctx.fillStyle = 'white';
+
+setCanvas()
 
 let timeStarted = Date.now();
 let enemyList = {};
@@ -26,17 +21,23 @@ let startedFiring = 0;
 let fireRate = 0;
 let weaponSelect = 0;
 
-
-
-window.onresize = function (event) {
+function setCanvas() {
   windowHeight = window.innerHeight;
   windowWidth = window.innerWidth;
-  canvasHeight = windowHeight -100;
-  console.log('window resize detected, Height: ', windowHeight, 'Width: ', windowWidth);
-  document.getElementById('ctx').height = window.innerHeight - 100;
+  canvasHeight = windowHeight - 50;
+  if (window.innerWidth > 500){
+    canvasWidth = 500;
+  } else {
+    canvasWidth = window.innerWidth - 10;
+  }
+  document.getElementById('ctx').height = canvasHeight;
   document.getElementById('ctx').width = canvasWidth;
   ctx.font = '30px "Courier New", Courier, monospace';
   ctx.fillStyle = 'white';
+}
+
+window.onresize = function (event) {
+  setCanvas();
 };
 
 let player1 = {
