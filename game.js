@@ -20,7 +20,7 @@ let space = false;
 let startedFiring = 0;
 let fireRate = 0;
 let weaponSelect = 0;
-let isMobile = false;
+
 
 function setCanvas() {
   windowHeight = window.innerHeight;
