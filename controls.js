@@ -8,8 +8,10 @@ if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobi
   console.log('mobile deveice')
   // alert("Mobile Device");
   isMobile = true;
+  _isMobile = true;
 } else {
   isMobile = false;
+  _isMobile = false;
 }
 
 ctx.onselectstart = function () { return false; }
