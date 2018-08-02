@@ -2,85 +2,87 @@
 
 let mouse_X = {};
 let mouse_Y = {};
+let isMobile = false;
 
-// const reset = document.getElementById('reset-button')
-// if(reset){
-//   console.log('reset button clicked!')
-// }
-
-// var somediv = document.getElementById("info")
-// disableSelection(somediv)
-
-document.oncontextmenu = function() {
-  return false;
+if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
+  console.log('mobile deveice')
+  // alert("Mobile Device");
+  isMobile = true;
+} else {
+  isMobile = false;
 }
 
 ctx.onselectstart = function () { return false; }
 
-document.onmousemove = function (mouse) {
-  let mouseX = mouse.clientX - document.getElementById('ctx').getBoundingClientRect().left;
-  let mouseY = mouse.clientY - document.getElementById('ctx').getBoundingClientRect().top;
-  mouse_X = mouseX;
-  mouse_Y = mouseY;
+if (isMobile === false) {
+  document.onmousemove = function (mouse) {
+    let mouseX = mouse.clientX - document.getElementById('ctx').getBoundingClientRect().left;
+    let mouseY = mouse.clientY - document.getElementById('ctx').getBoundingClientRect().top;
+    mouse_X = mouseX;
+    mouse_Y = mouseY;
 
-  /*Prevents player from leaving field of play*/
-  //Left
-  if (mouse_X < player1.width / 2)
-    mouse_X = player1.width / 2;
-  //Right
-  if (mouse_X > canvasWidth - player1.width / 2)
-    mouse_X = canvasWidth - player1.width / 2;
-  //Top
-  if (mouse_Y < player1.height / 2)
-    mouse_Y = player1.height / 2;
-  //Bottom
-  if (mouse_Y > canvasHeight - player1.height / 2)
-    mouse_Y = canvasHeight - player1.height / 2;
+    /*Prevents player from leaving field of play*/
+    //Left
+    if (mouse_X < player1.width / 2)
+      mouse_X = player1.width / 2;
+    //Right
+    if (mouse_X > canvasWidth - player1.width / 2)
+      mouse_X = canvasWidth - player1.width / 2;
+    //Top
+    if (mouse_Y < player1.height / 2)
+      mouse_Y = player1.height / 2;
+    //Bottom
+    if (mouse_Y > canvasHeight - player1.height / 2)
+      mouse_Y = canvasHeight - player1.height / 2;
 
-  player1.x = mouse_X
-  player1.y = mouse_Y
-  // console.log('x: ', mouseX, 'y: ', mouseY);
-}
+    player1.x = mouse_X
+    player1.y = mouse_Y
+    // console.log('x: ', mouseX, 'y: ', mouseY);
+  }
 
-document.oncontextmenu = function() { // Disables right click menue
-  console.log('right click')
-  return false;
-  
-}
+  document.oncontextmenu = function () { // Disables right click menue
+    console.log('right click')
+    return false;
 
-document.onmousedown = function () {
-  if(mouse_X <= canvasWidth && mouse_Y <= canvasHeight){
-    firing = true;
+  }
+
+  document.onmousedown = function () {
+    if (mouse_X <= canvasWidth && mouse_Y <= canvasHeight) {
+      firing = true;
+    }
+  }
+
+  document.onmouseup = function (mouse) {
+    firing = false;
+    startedFiring = 0;
   }
 }
 
-document.onmouseup = function (mouse) {
-  firing = false;
-  startedFiring = 0;
-}
-
-window.addEventListener('touchstart', function(e) {
-  // console.log('the user touched the screen!');
-  firing = true;
-});
-
-window.addEventListener('touchmove', function(e){
+function touchUpdate(e) {
   let mouseX = e.touches[0].clientX - document.getElementById('ctx').getBoundingClientRect().left;
   let mouseY = e.touches[0].clientY - document.getElementById('ctx').getBoundingClientRect().top;
   mouse_X = mouseX;
   mouse_Y = mouseY;
 
-  player1.x = mouse_X
-  player1.y = mouse_Y
+  player1.x = mouse_X;
+  player1.y = mouse_Y - 20;
+}
+
+window.addEventListener('touchstart', function (e) {
+  firing = true;
+  touchUpdate(e);
 });
 
-window.addEventListener('touchend', function() {
-  // console.log('the user stopped touching the screen!');
+window.addEventListener('touchmove', function (e) {
+  touchUpdate(e);
+});
+
+window.addEventListener('touchend', function (e) {
   firing = false;
   startedFiring = 0;
 });
 
-document.onkeydown = function(event) {
+document.onkeydown = function (event) {
   if (event.keyCode === 68 || event.keyCode === 39) { //d or Right arrow
     playerBottom.pressingRight = true;
     playerTop.pressingRight = true;
@@ -108,7 +110,7 @@ document.onkeydown = function(event) {
   }
 };
 
-document.onkeyup = function(event) {
+document.onkeyup = function (event) {
   if (event.keyCode === 68 || event.keyCode === 39) { //d or Right arrow
     playerBottom.pressingRight = false;
     playerTop.pressingRight = false;
