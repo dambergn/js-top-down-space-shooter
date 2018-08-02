@@ -2,17 +2,17 @@
 
 let mouse_X = {};
 let mouse_Y = {};
-let isMobile = false;
+// let isMobile = false;
 
-if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
-  console.log('mobile deveice')
-  // alert("Mobile Device");
-  isMobile = true;
-  _isMobile = true;
-} else {
-  isMobile = false;
-  _isMobile = false;
-}
+// if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
+//   console.log('mobile deveice')
+//   // alert("Mobile Device");
+//   isMobile = true;
+//   _isMobile = true;
+// } else {
+//   isMobile = false;
+//   _isMobile = false;
+// }
 
 ctx.onselectstart = function () { return false; }
 
