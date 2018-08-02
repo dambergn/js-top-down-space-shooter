@@ -32,7 +32,7 @@ let fireWeapon = function (mouseX, mouseY) {
 
   fireRate = 10;
 
-  if (isMobile === true){
+  if (_isMobile === true){
     y = mouseY - 50;
   }
 
@@ -55,7 +55,7 @@ let fireWeapon2 = function (mouseX, mouseY) {
 
   fireRate = 5;
 
-  if (isMobile === true){
+  if (_isMobile === true){
     y = mouseY - 50;
   }
 
