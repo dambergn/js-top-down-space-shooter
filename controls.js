@@ -59,6 +59,27 @@ document.onmouseup = function (mouse) {
   startedFiring = 0;
 }
 
+window.addEventListener('touchstart', function(e) {
+  // console.log('the user touched the screen!');
+  firing = true;
+});
+
+window.addEventListener('touchmove', function(e){
+  let mouseX = e.touches[0].clientX - document.getElementById('ctx').getBoundingClientRect().left;
+  let mouseY = e.touches[0].clientY - document.getElementById('ctx').getBoundingClientRect().top;
+  mouse_X = mouseX;
+  mouse_Y = mouseY;
+
+  player1.x = mouse_X
+  player1.y = mouse_Y
+});
+
+window.addEventListener('touchend', function() {
+  // console.log('the user stopped touching the screen!');
+  firing = false;
+  startedFiring = 0;
+});
+
 document.onkeydown = function(event) {
   if (event.keyCode === 68 || event.keyCode === 39) { //d or Right arrow
     playerBottom.pressingRight = true;

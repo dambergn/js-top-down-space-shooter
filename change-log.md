@@ -8,6 +8,7 @@
 # 2018-08-01
 - Prevent text select messing with canvas game.
 - Added ability to change window size and canvas adjusts accordingly.
+- Added touch screen control capability.
 
 # 2018-07-31
 - Added ability for multiple weapon modes selectable by the 1, 2 keys.  More to come.

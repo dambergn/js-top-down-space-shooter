@@ -4,7 +4,7 @@ const ctx = document.getElementById('ctx').getContext('2d');
 
 let windowHeight = window.innerHeight;
 let windowWidth = window.innerWidth;
-let canvasHeight = window.innerHeight - 50; // Y
+let canvasHeight = window.innerHeight - 10; // Y
 let canvasWidth = 500; // X
 
 setCanvas()
@@ -24,7 +24,7 @@ let weaponSelect = 0;
 function setCanvas() {
   windowHeight = window.innerHeight;
   windowWidth = window.innerWidth;
-  canvasHeight = windowHeight - 50;
+  canvasHeight = windowHeight - 10;
   if (window.innerWidth > 500){
     canvasWidth = 500;
   } else {
