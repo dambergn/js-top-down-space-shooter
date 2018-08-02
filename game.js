@@ -1,11 +1,19 @@
 'use strict';
 
+
+
 const ctx = document.getElementById('ctx').getContext('2d');
+
+let windowHeight = window.innerHeight;
+let windowWidth = window.innerWidth;
+
+let canvasHeight = window.innerHeight - 100; // Y
+let canvasWidth = 500; // X
+document.getElementById('ctx').height = canvasHeight;
+document.getElementById('ctx').width = canvasWidth;
 ctx.font = '30px "Courier New", Courier, monospace';
 ctx.fillStyle = 'white';
 
-let canvasHeight = 700; // Y
-let canvasWidth = 500; // X
 let timeStarted = Date.now();
 let enemyList = {};
 let weaponsFire = {};
@@ -17,6 +25,19 @@ let space = false;
 let startedFiring = 0;
 let fireRate = 0;
 let weaponSelect = 0;
+
+
+
+window.onresize = function (event) {
+  windowHeight = window.innerHeight;
+  windowWidth = window.innerWidth;
+  canvasHeight = windowHeight -100;
+  console.log('window resize detected, Height: ', windowHeight, 'Width: ', windowWidth);
+  document.getElementById('ctx').height = window.innerHeight - 100;
+  document.getElementById('ctx').width = canvasWidth;
+  ctx.font = '30px "Courier New", Courier, monospace';
+  ctx.fillStyle = 'white';
+};
 
 let player1 = {
   x: 250,
@@ -97,7 +118,7 @@ let collisionDetection = function (entity1, entity2) {
   return testCollisionRectRect(rect1, rect2);
 };
 
-let playerEnemyHitDetection = function() {
+let playerEnemyHitDetection = function () {
   for (let key in enemyList) {
     updateEntity(enemyList[key]);
     let isColliding = collisionDetection(player1, enemyList[key]);
@@ -111,7 +132,7 @@ let playerEnemyHitDetection = function() {
   }
 }
 
-let playerWeaponHitDetection = function(){
+let playerWeaponHitDetection = function () {
   for (let key1 in enemyList) {
     for (let key2 in weaponsFire) {
       let isColliding2 = collisionDetection(weaponsFire[key2], enemyList[key1]);
@@ -126,7 +147,7 @@ let playerWeaponHitDetection = function(){
   }
 }
 
-let strayBulletCleanup = function(){
+let strayBulletCleanup = function () {
   for (let key1 in weaponsFire) {
     updateEntity(weaponsFire[key1]);
     if (weaponsFire[key1].y <= 1 || weaponsFire[key1].x > canvasWidth || weaponsFire[key1].x < 0) {
@@ -135,17 +156,17 @@ let strayBulletCleanup = function(){
   }
 }
 
-let fireSelectedWeapon = function(mouse_X, mouse_Y) {
-  if(weaponSelect == 0){
+let fireSelectedWeapon = function (mouse_X, mouse_Y) {
+  if (weaponSelect == 0) {
     fireWeapon(mouse_X, mouse_Y);
   }
-  if(weaponSelect == 1){
+  if (weaponSelect == 1) {
     fireWeapon2(mouse_X, mouse_Y);
   }
-  if(weaponSelect == 2){
+  if (weaponSelect == 2) {
     fireWeapon4(mouse_X, mouse_Y);
   }
-  if(weaponSelect == 3){
+  if (weaponSelect == 3) {
     fireWeapon5(mouse_X, mouse_Y);
   }
 }
@@ -191,19 +212,15 @@ let update = function () {
 };
 
 let randomlyGenerateEnemy = function () {
-  // let x = 250;
   let x = Math.round(Math.random() * canvasWidth);
   let y = 0;
-  // let y = Math.round(Math.random() * canvasHeight);
   let height = 10 + Math.round(Math.random() * 30);
   let width = 10 + Math.round(Math.random() * 30);
   let id = Math.random();
   let spdX = 0;
-  // let spdX = 5 + Math.round(Math.random() * 5);
   let spdY = 2 + Math.round(Math.random() * 2);
   let color = 'red';
 
-  // console.log('created: ', id, x, y, spdX, spdY, width, height, color);
   Enemy(id, x, y, spdX, spdY, width, height, color)
 }
 
