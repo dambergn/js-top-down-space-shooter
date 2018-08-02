@@ -2,7 +2,6 @@
 
 let mouse_X = {};
 let mouse_Y = {};
-let isMobile = false;
 
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
   console.log('mobile deveice')
@@ -65,7 +64,7 @@ function touchUpdate(e) {
   mouse_Y = mouseY;
 
   player1.x = mouse_X;
-  player1.y = mouse_Y - 20;
+  player1.y = mouse_Y - 50; // Offsets above where user is touching
 }
 
 window.addEventListener('touchstart', function (e) {
