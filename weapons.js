@@ -2,17 +2,17 @@
 
 let Weapon = function (id, x, y, spdX, spdY, width, height, color, type, fireRate, damage) {
   let weapon = {
-    id: id,
-    x: x,
-    spdX: spdX,
-    y: y,
-    spdY: spdY,
-    width: width,
-    height: height,
-    color: color,
-    type: type,
-    fireRate: fireRate,
-    damage: damage,
+    id:id,
+    x:x,
+    y:y,
+    spdX:spdX,
+    spdY:spdY,
+    width:width,
+    height:height,
+    color:color,
+    type:type,
+    fireRate:fireRate,
+    damage:damage,
   }
   weaponsFire[id] = weapon;
 }
