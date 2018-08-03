@@ -76,7 +76,7 @@ let fireWeapon3 = function (mouseX, mouseY) {
   let type = 'projectile';
   let damage = 1;
 
-  fireRate = 5;
+  fireRate = 10;
 
   if (isMobile === true){
     y = mouseY - 50;
@@ -100,7 +100,7 @@ let fireWeapon4 = function (mouseX, mouseY) {
   let type = 'projectile';
   let damage = 1;
 
-  fireRate = 5;
+  fireRate = 10;
 
   if (isMobile === true){
     y = mouseY - 50;
@@ -118,7 +118,7 @@ let fireWeapon5 = function (mouseX, mouseY) {
   let id = Math.random();
   let x = mouseX;
   let y = mouseY;
-  let height = 200;
+  let height = 150;
   let width = 1;
   let spdX = 0;
   let spdY = -20;
