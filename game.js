@@ -22,6 +22,7 @@ let fireRate = 0;
 let weaponSelect = 0;
 let isMobile = false;
 
+// Detects if playing on a touch screen mobile device.
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
   console.log('mobile deveice')
   // alert("Mobile Device");
@@ -61,21 +62,6 @@ let player1 = {
   width: 20,
   height: 20,
   color: 'green',
-};
-
-let Enemy = function (id, x, y, spdX, spdY, width, height, color) {
-  let enemy = {
-    x: x,
-    spdX: spdX,
-    y: y,
-    spdY: spdY,
-    name: 'E',
-    id: id,
-    width: width,
-    height: height,
-    color: color,
-  };
-  enemyList[id] = enemy;
 };
 
 let updateEntity = function (update) {
@@ -183,6 +169,7 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   }
 }
 
+// ---------------------------update------------------------------
 let update = function () {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);//clears old data
   frameCount++;
@@ -223,19 +210,6 @@ let update = function () {
   ctx.fillText('score: ' + score, 200, 30);
 };
 
-let randomlyGenerateEnemy = function () {
-  let x = Math.round(Math.random() * canvasWidth);
-  let y = 0;
-  let height = 10 + Math.round(Math.random() * 30);
-  let width = 10 + Math.round(Math.random() * 30);
-  let id = Math.random();
-  let spdX = 0;
-  let spdY = 2 + Math.round(Math.random() * 2);
-  let color = 'red';
-
-  Enemy(id, x, y, spdX, spdY, width, height, color)
-}
-
 let startNewGame = function () {
   timeStarted = Date.now();
   player1.hp = 10;
@@ -247,6 +221,9 @@ let startNewGame = function () {
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
 }
-startNewGame();
+window.onload = function(){
+  startNewGame();
+};
+
 
 setInterval(update, 40); //40ms is equivelint to 24fps

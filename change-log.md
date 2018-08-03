@@ -5,6 +5,11 @@
 []Add dynamic and changeable player ships.
 [/]Detect window size and adjust play window accordingly.
 
+# 2018-08-02
+- Fixed mobile touch screen and weapons on mobile device.
+- Moved enemy generation to its own enemys.js file.
+- 
+
 # 2018-08-01
 - Prevent text select messing with canvas game.
 - Added ability to change window size and canvas adjusts accordingly.

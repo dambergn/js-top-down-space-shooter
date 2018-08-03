@@ -78,6 +78,10 @@ let fireWeapon3 = function (mouseX, mouseY) {
 
   fireRate = 5;
 
+  if (isMobile === true){
+    y = mouseY - 50;
+  }
+
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
   Weapon(id, x - 4, y, spdX, spdY, width, height, color, type, fireRate, damage);
   Weapon(id + 1, x +3 , y, spdX, spdY, width, height, color, type, fireRate, damage);
@@ -97,6 +101,10 @@ let fireWeapon4 = function (mouseX, mouseY) {
   let damage = 1;
 
   fireRate = 5;
+
+  if (isMobile === true){
+    y = mouseY - 50;
+  }
 
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
   Weapon(id, x - 4, y, spdX, spdY, width, height, color, type, fireRate, damage);
@@ -119,6 +127,10 @@ let fireWeapon5 = function (mouseX, mouseY) {
   let damage = 1;
 
   fireRate = 25;
+
+  if (isMobile === true){
+    y = mouseY - 50;
+  }
 
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
   Weapon(id, x, y - 100, spdX, spdY, width, height, color, type, fireRate, damage);
