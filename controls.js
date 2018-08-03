@@ -96,7 +96,7 @@ document.onkeydown = function (event) {
   } else if (event.keyCode === 51) { // 3
     weaponSelect = 2;
   } else if (event.keyCode === 52) { // 4
-    weaponSelect = 3;
+    weaponSelect = 5;
   }
 };
 
