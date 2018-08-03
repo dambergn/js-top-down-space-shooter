@@ -1,9 +1,18 @@
 # Things to add or improve.
 []Create different types of enemy with unique aspects.
-[]Give enemy different ammounts of HP.
-[]Change weapon damage.
+[X]Give enemy different ammounts of HP.
+[X]Change weapon damage.
 []Add dynamic and changeable player ships.
-[/]Detect window size and adjust play window accordingly.
+[X]Detect window size and adjust play window accordingly.
+
+# 2018-08-02
+- Fixed mobile touch screen and weapons on mobile device.
+- Moved enemy generation to its own enemys.js file.
+- Weapons upgrade based on number of kills.
+- New different colored enemy appears after 10 kills.
+- Enemy now have their own HP.
+- New organge enemy requires 2 hits to kill.
+- weapons now have hp damage.
 
 # 2018-08-01
 - Prevent text select messing with canvas game.

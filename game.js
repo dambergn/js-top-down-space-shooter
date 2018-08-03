@@ -1,14 +1,11 @@
 'use strict';
 
 const ctx = document.getElementById('ctx').getContext('2d');
-
 let windowHeight = window.innerHeight;
 let windowWidth = window.innerWidth;
-let canvasHeight = window.innerHeight - 10; // Y
+let canvasHeight = window.innerHeight - 6; // Y
 let canvasWidth = 500; // X
-
 setCanvas()
-
 let timeStarted = Date.now();
 let enemyList = {};
 let weaponsFire = {};
@@ -22,21 +19,19 @@ let fireRate = 0;
 let weaponSelect = 0;
 let isMobile = false;
 
+// Detects if playing on a touch screen mobile device.
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
   console.log('mobile deveice')
-  // alert("Mobile Device");
   isMobile = true;
-  // _isMobile = true;
 } else {
   isMobile = false;
-  // _isMobile = false;
 }
 
 function setCanvas() {
   windowHeight = window.innerHeight;
   windowWidth = window.innerWidth;
-  canvasHeight = windowHeight - 10;
-  if (window.innerWidth > 500){
+  canvasHeight = windowHeight - 6;
+  if (window.innerWidth > 500) {
     canvasWidth = 500;
   } else {
     canvasWidth = window.innerWidth - 10;
@@ -52,30 +47,15 @@ window.onresize = function (event) {
 };
 
 let player1 = {
-  x: 250,
-  spdX: 25,
-  y: 600,
-  spdY: 5,
-  name: 'P1',
-  hp: 10,
-  width: 20,
-  height: 20,
-  color: 'green',
-};
-
-let Enemy = function (id, x, y, spdX, spdY, width, height, color) {
-  let enemy = {
-    x: x,
-    spdX: spdX,
-    y: y,
-    spdY: spdY,
-    name: 'E',
-    id: id,
-    width: width,
-    height: height,
-    color: color,
-  };
-  enemyList[id] = enemy;
+  name:'P1',
+  x:250,
+  y:600,
+  spdX:25,
+  spdY:5,
+  hp:10,
+  width:20,
+  height:20,
+  color:'green',
 };
 
 let updateEntity = function (update) {
@@ -151,8 +131,11 @@ let playerWeaponHitDetection = function () {
       if (isColliding2) {
         score++;
         hpRegen++;
+        enemyList[key1].hp = enemyList[key1].hp - weaponsFire[key2].damage
         delete weaponsFire[key2];
-        delete enemyList[key1];
+        if (enemyList[key1].hp < 1){
+          delete enemyList[key1];
+        }
         break;
       }
     }
@@ -183,6 +166,7 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   }
 }
 
+/* ---------------------------update------------------------------ */
 let update = function () {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);//clears old data
   frameCount++;
@@ -192,6 +176,11 @@ let update = function () {
       randomlyGenerateEnemy();
     }
   }
+
+  // Weapon upgrades
+  if (score == 10) weaponSelect = 3;
+  if (score == 20) weaponSelect = 1;
+  if (score == 30) weaponSelect = 2;
 
   playerEnemyHitDetection();
   playerWeaponHitDetection();
@@ -210,6 +199,7 @@ let update = function () {
 
   if (hpRegen == 10) {
     player1.hp++;
+    level_1_Enemy();
     hpRegen = 0;
   }
 
@@ -223,19 +213,6 @@ let update = function () {
   ctx.fillText('score: ' + score, 200, 30);
 };
 
-let randomlyGenerateEnemy = function () {
-  let x = Math.round(Math.random() * canvasWidth);
-  let y = 0;
-  let height = 10 + Math.round(Math.random() * 30);
-  let width = 10 + Math.round(Math.random() * 30);
-  let id = Math.random();
-  let spdX = 0;
-  let spdY = 2 + Math.round(Math.random() * 2);
-  let color = 'red';
-
-  Enemy(id, x, y, spdX, spdY, width, height, color)
-}
-
 let startNewGame = function () {
   timeStarted = Date.now();
   player1.hp = 10;
@@ -243,10 +220,15 @@ let startNewGame = function () {
   score = 0;
   enemyList = {};
   weaponsFire = {};
+  weaponSelect = 0;
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
 }
-startNewGame();
+
+window.onload = function () {// Prevents function call till after page has fully loaded.
+  startNewGame();
+};
+
 
 setInterval(update, 40); //40ms is equivelint to 24fps

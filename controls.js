@@ -2,19 +2,13 @@
 
 let mouse_X = {};
 let mouse_Y = {};
-// let isMobile = false;
-
-// if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
-//   console.log('mobile deveice')
-//   // alert("Mobile Device");
-//   isMobile = true;
-//   _isMobile = true;
-// } else {
-//   isMobile = false;
-//   _isMobile = false;
-// }
 
 ctx.onselectstart = function () { return false; }
+
+document.oncontextmenu = function () { // Disables right click menue
+  console.log('right click')
+  return false;
+}
 
 if (isMobile === false) {
   document.onmousemove = function (mouse) {
@@ -40,12 +34,6 @@ if (isMobile === false) {
     player1.x = mouse_X
     player1.y = mouse_Y
     // console.log('x: ', mouseX, 'y: ', mouseY);
-  }
-
-  document.oncontextmenu = function () { // Disables right click menue
-    console.log('right click')
-    return false;
-
   }
 
   document.onmousedown = function () {
