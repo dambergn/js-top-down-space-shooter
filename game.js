@@ -157,6 +157,8 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   if (weaponSelect == 2) fireWeapon3(mouse_X, mouse_Y);
   if (weaponSelect == 3) fireWeapon4(mouse_X, mouse_Y);
   if (weaponSelect == 4) fireWeapon5(mouse_X, mouse_Y);
+  if (weaponSelect == 5) fireWeapon6(mouse_X, mouse_Y);
+  if (weaponSelect == 6) fireWeapon7(mouse_X, mouse_Y);
 }
 
 /* ---------------------------update------------------------------ */
@@ -175,6 +177,8 @@ let update = function () {
   if (score == 20) weaponSelect = 2;
   if (score == 30) weaponSelect = 3;
   if (score == 40) weaponSelect = 4;
+  if (score == 50) weaponSelect = 5;
+  if (score == 60) weaponSelect = 6;
 
   playerEnemyHitDetection();
   playerWeaponHitDetection();

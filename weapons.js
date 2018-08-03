@@ -1,5 +1,8 @@
 'use strict';
 
+let altFire = false;
+let cycleFire = 0;
+
 let Weapon = function (id, x, y, spdX, spdY, width, height, color, type, fireRate, damage) {
   let weapon = {
     id:id,
@@ -87,8 +90,35 @@ let fireWeapon3 = function (mouseX, mouseY) {
   Weapon(id + 1, x +3 , y, spdX, spdY, width, height, color, type, fireRate, damage);
 }
 
-// Spread Fire
+// Alternating Fire
 let fireWeapon4 = function (mouseX, mouseY) {
+  let id = Math.random();
+  let x = mouseX;
+  let y = mouseY;
+  let height = 5;
+  let width = 1;
+  let spdX = 0;
+  let spdY = -14;
+  let color = 'green';
+  let type = 'projectile';
+  let damage = 1;
+
+  fireRate = 5;
+
+  if (isMobile === true){
+    y = mouseY - 50;
+  }
+  
+  if (altFire === false){
+    Weapon(id, x - 4, y, spdX, spdY, width, height, color, type, fireRate, damage);
+  } else {
+    Weapon(id, x + 4, y, spdX, spdY, width, height, color, type, fireRate, damage);
+  }
+  altFire = !altFire;
+}
+
+// Spread Fire
+let fireWeapon5 = function (mouseX, mouseY) {
   let id = Math.random();
   let x = mouseX;
   let y = mouseY;
@@ -113,8 +143,39 @@ let fireWeapon4 = function (mouseX, mouseY) {
   Weapon(id + 3, x + 3 , y, spdX - 5, spdY, width, height, color, type, fireRate, damage);
 }
 
+// Cycling Spread Fire
+let fireWeapon6 = function (mouseX, mouseY) {
+  let id = Math.random();
+  let x = mouseX;
+  let y = mouseY;
+  let height = 5;
+  let width = 1;
+  let spdX = 0;
+  let spdY = -14;
+  let color = 'purple';
+  let type = 'projectile';
+  let damage = 1;
+
+  fireRate = 2;
+
+  if (isMobile === true){
+    y = mouseY - 50;
+  }
+
+  if (cycleFire == 0) Weapon(id, x - 4, y, spdX, spdY, width, height, color, type, fireRate, damage);
+  if (cycleFire == 1) Weapon(id + 1, x + 4 , y, spdX, spdY, width, height, color, type, fireRate, damage);
+  if (cycleFire == 2) Weapon(id + 2, x - 3 , y, spdX + 5, spdY, width, height, color, type, fireRate, damage);
+  if (cycleFire == 3) Weapon(id + 3, x + 3 , y, spdX - 5, spdY, width, height, color, type, fireRate, damage);
+  
+  if (cycleFire == 4){
+    cycleFire = 0
+  } else {
+    cycleFire++;
+  }
+}
+
 // Lazer Beam.
-let fireWeapon5 = function (mouseX, mouseY) {
+let fireWeapon7 = function (mouseX, mouseY) {
   let id = Math.random();
   let x = mouseX;
   let y = mouseY;

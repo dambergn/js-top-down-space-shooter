@@ -6,6 +6,9 @@
 [X]Detect window size and adjust play window accordingly.
 []More spread progression
 
+# 2018-08-03
+- Added two more fireing modes, alternating fire, and cycle fire.
+
 # 2018-08-02
 - Fixed mobile touch screen and weapons on mobile device.
 - Moved enemy generation to its own enemys.js file.
