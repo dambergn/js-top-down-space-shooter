@@ -4,6 +4,7 @@
 [X]Change weapon damage.
 []Add dynamic and changeable player ships.
 [X]Detect window size and adjust play window accordingly.
+[]More spread progression
 
 # 2018-08-02
 - Fixed mobile touch screen and weapons on mobile device.

@@ -152,18 +152,11 @@ let strayBulletCleanup = function () {
 }
 
 let fireSelectedWeapon = function (mouse_X, mouse_Y) {
-  if (weaponSelect == 0) {
-    fireWeapon(mouse_X, mouse_Y);
-  }
-  if (weaponSelect == 1) {
-    fireWeapon2(mouse_X, mouse_Y);
-  }
-  if (weaponSelect == 2) {
-    fireWeapon4(mouse_X, mouse_Y);
-  }
-  if (weaponSelect == 3) {
-    fireWeapon5(mouse_X, mouse_Y);
-  }
+  if (weaponSelect == 0) fireWeapon(mouse_X, mouse_Y);
+  if (weaponSelect == 1) fireWeapon2(mouse_X, mouse_Y);
+  if (weaponSelect == 2) fireWeapon3(mouse_X, mouse_Y);
+  if (weaponSelect == 3) fireWeapon4(mouse_X, mouse_Y);
+  if (weaponSelect == 4) fireWeapon5(mouse_X, mouse_Y);
 }
 
 /* ---------------------------update------------------------------ */
@@ -178,9 +171,10 @@ let update = function () {
   }
 
   // Weapon upgrades
-  if (score == 10) weaponSelect = 3;
-  if (score == 20) weaponSelect = 1;
-  if (score == 30) weaponSelect = 2;
+  if (score == 10) weaponSelect = 1;
+  if (score == 20) weaponSelect = 2;
+  if (score == 30) weaponSelect = 3;
+  if (score == 40) weaponSelect = 4;
 
   playerEnemyHitDetection();
   playerWeaponHitDetection();
