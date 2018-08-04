@@ -67,12 +67,12 @@ let updateEntity = function (update) {
 let updateEntityPosition = function (update) {
   update.x += update.spdX;
   update.y += update.spdY;
-  if (update.x < 0 || update.x > canvasWidth) {
-    update.spdX = -update.spdX;
-  }
-  if (update.y < 0 || update.y > canvasHeight) {
-    update.spdY = -update.spdX;
-  }
+  // if (update.x < 0 || update.x > canvasWidth) {
+  //   update.spdX = -update.spdX;
+  // }
+  // if (update.y < 0 || update.y > canvasHeight) {
+  //   update.spdY = -update.spdX;
+  // }
 };
 
 let testCollisionRectRect = function (rect1, rect2) {
@@ -115,7 +115,9 @@ let playerEnemyHitDetection = function () {
   for (let key in enemyList) {
     updateEntity(enemyList[key]);
     let isColliding = collisionDetection(player1, enemyList[key]);
-    if (enemyList[key].y > canvasHeight) {
+    if (enemyList[key].x > canvasWidth || enemyList[key].x < 0){
+      delete enemyList[key];
+    } else if (enemyList[key].y > canvasHeight) {
       missed++;
       delete enemyList[key];
     }
@@ -123,7 +125,9 @@ let playerEnemyHitDetection = function () {
       player1.hp = player1.hp - enemyList[key].hp;
       delete enemyList[key];
     }
+    
   }
+  
 }
 
 let playerWeaponHitDetection = function () {
@@ -136,7 +140,7 @@ let playerWeaponHitDetection = function () {
         if (enemyList[key1].hp < 1){
           score++;
           hpRegen++;
-          console.log(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
+          // console.log(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
           afterEffect(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
           delete enemyList[key1];
         }

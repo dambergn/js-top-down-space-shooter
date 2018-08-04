@@ -12,6 +12,7 @@
 - Added new asteroid type enemy that breaks into smaller pieces after destruction.
 - Player now takes damage equal to how much hp an enemy has left.
 - Added test ultimate weapon combining 2 other weapons.
+- Added another break to the lvl2 asteroids to lvl1 asteroids.
 
 # 2018-08-02
 - Fixed mobile touch screen and weapons on mobile device.
