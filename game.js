@@ -11,6 +11,7 @@ let enemyList = {};
 let weaponsFire = {};
 let frameCount = 0;
 let score = 0;
+let missed = 0;
 let hpRegen = 0;
 let firing = false;
 let space = false;
@@ -115,6 +116,7 @@ let playerEnemyHitDetection = function () {
     updateEntity(enemyList[key]);
     let isColliding = collisionDetection(player1, enemyList[key]);
     if (enemyList[key].y > canvasHeight) {
+      missed++;
       delete enemyList[key];
     }
     if (isColliding) {
@@ -129,11 +131,13 @@ let playerWeaponHitDetection = function () {
     for (let key2 in weaponsFire) {
       let isColliding2 = collisionDetection(weaponsFire[key2], enemyList[key1]);
       if (isColliding2) {
-        score++;
-        hpRegen++;
         enemyList[key1].hp = enemyList[key1].hp - weaponsFire[key2].damage
         delete weaponsFire[key2];
         if (enemyList[key1].hp < 1){
+          score++;
+          hpRegen++;
+          console.log(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
+          afterEffect(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
           delete enemyList[key1];
         }
         break;
@@ -202,8 +206,8 @@ let update = function () {
   }
 
   if (player1.hp <= 0) {
-    let timeSurvived = Date.now() - timeStarted;
-    console.log('you lost!  You survived for', timeSurvived, 'ms.');
+    console.log('You killed ', score, ' enemys but missed ', missed);
+    alert('You killed ' + score + ' enemys but missed ' + missed)
     startNewGame();
   }
   drawEntity(player1);
@@ -216,6 +220,7 @@ let startNewGame = function () {
   player1.hp = 10;
   frameCount = 0;
   score = 0;
+  missed = 0
   enemyList = {};
   weaponsFire = {};
   weaponSelect = 0;

@@ -1,5 +1,6 @@
 # Things to add or improve.
 []Create different types of enemy with unique aspects.
+[]Make asteroid enemys that break into smaller asteroids.
 [X]Give enemy different ammounts of HP.
 [X]Change weapon damage.
 []Add dynamic and changeable player ships.
@@ -8,6 +9,7 @@
 
 # 2018-08-03
 - Added two more fireing modes, alternating fire, and cycle fire.
+- Added new asteroid type enemy that breaks into smaller pieces after destruction.
 
 # 2018-08-02
 - Fixed mobile touch screen and weapons on mobile device.
