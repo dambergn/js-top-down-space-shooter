@@ -120,8 +120,8 @@ let playerEnemyHitDetection = function () {
       delete enemyList[key];
     }
     if (isColliding) {
+      player1.hp = player1.hp - enemyList[key].hp;
       delete enemyList[key];
-      player1.hp = player1.hp - 1;
     }
   }
 }
@@ -163,6 +163,7 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   if (weaponSelect == 4) fireWeapon5(mouse_X, mouse_Y);
   if (weaponSelect == 5) fireWeapon6(mouse_X, mouse_Y);
   if (weaponSelect == 6) fireWeapon7(mouse_X, mouse_Y);
+  if (weaponSelect == 7) fireWeapon8(mouse_X, mouse_Y);
 }
 
 /* ---------------------------update------------------------------ */
@@ -174,6 +175,7 @@ let update = function () {
     for (let i = 0; i <= Math.random() * 3; i++) {
       randomlyGenerateEnemy();
     }
+    asteroid_lvl3();
   }
 
   // Weapon upgrades
@@ -183,6 +185,7 @@ let update = function () {
   if (score == 40) weaponSelect = 4;
   if (score == 50) weaponSelect = 5;
   if (score == 60) weaponSelect = 6;
+  if (score == 70) weaponSelect = 7;
 
   playerEnemyHitDetection();
   playerWeaponHitDetection();

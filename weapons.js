@@ -185,7 +185,7 @@ let fireWeapon7 = function (mouseX, mouseY) {
   let spdY = -20;
   let color = 'red';
   let type = 'beam';
-  let damage = 1;
+  let damage = 10;
 
   fireRate = 25;
 
@@ -195,4 +195,10 @@ let fireWeapon7 = function (mouseX, mouseY) {
 
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
   Weapon(id, x, y - 100, spdX, spdY, width, height, color, type, fireRate, damage);
+}
+
+// Lazer Beam and Projectiles
+let fireWeapon8 = function(mouseX, mouseY) {
+  fireWeapon7(mouseX, mouseY);
+  fireWeapon6(mouseX, mouseY);
 }

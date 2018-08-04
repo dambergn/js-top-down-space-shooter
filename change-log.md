@@ -10,6 +10,8 @@
 # 2018-08-03
 - Added two more fireing modes, alternating fire, and cycle fire.
 - Added new asteroid type enemy that breaks into smaller pieces after destruction.
+- Player now takes damage equal to how much hp an enemy has left.
+- Added test ultimate weapon combining 2 other weapons.
 
 # 2018-08-02
 - Fixed mobile touch screen and weapons on mobile device.
