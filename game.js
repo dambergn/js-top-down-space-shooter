@@ -11,6 +11,7 @@ let enemyList = {};
 let weaponsFire = {};
 let frameCount = 0;
 let score = 0;
+let missed = 0;
 let hpRegen = 0;
 let firing = false;
 let space = false;
@@ -66,12 +67,12 @@ let updateEntity = function (update) {
 let updateEntityPosition = function (update) {
   update.x += update.spdX;
   update.y += update.spdY;
-  if (update.x < 0 || update.x > canvasWidth) {
-    update.spdX = -update.spdX;
-  }
-  if (update.y < 0 || update.y > canvasHeight) {
-    update.spdY = -update.spdX;
-  }
+  // if (update.x < 0 || update.x > canvasWidth) {
+  //   update.spdX = -update.spdX;
+  // }
+  // if (update.y < 0 || update.y > canvasHeight) {
+  //   update.spdY = -update.spdX;
+  // }
 };
 
 let testCollisionRectRect = function (rect1, rect2) {
@@ -114,14 +115,19 @@ let playerEnemyHitDetection = function () {
   for (let key in enemyList) {
     updateEntity(enemyList[key]);
     let isColliding = collisionDetection(player1, enemyList[key]);
-    if (enemyList[key].y > canvasHeight) {
+    if (enemyList[key].x > canvasWidth || enemyList[key].x < 0){
+      delete enemyList[key];
+    } else if (enemyList[key].y > canvasHeight) {
+      missed++;
       delete enemyList[key];
     }
     if (isColliding) {
+      player1.hp = player1.hp - enemyList[key].hp;
       delete enemyList[key];
-      player1.hp = player1.hp - 1;
     }
+    
   }
+  
 }
 
 let playerWeaponHitDetection = function () {
@@ -129,11 +135,13 @@ let playerWeaponHitDetection = function () {
     for (let key2 in weaponsFire) {
       let isColliding2 = collisionDetection(weaponsFire[key2], enemyList[key1]);
       if (isColliding2) {
-        score++;
-        hpRegen++;
         enemyList[key1].hp = enemyList[key1].hp - weaponsFire[key2].damage
         delete weaponsFire[key2];
         if (enemyList[key1].hp < 1){
+          score++;
+          hpRegen++;
+          // console.log(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
+          afterEffect(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
           delete enemyList[key1];
         }
         break;
@@ -159,6 +167,7 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   if (weaponSelect == 4) fireWeapon5(mouse_X, mouse_Y);
   if (weaponSelect == 5) fireWeapon6(mouse_X, mouse_Y);
   if (weaponSelect == 6) fireWeapon7(mouse_X, mouse_Y);
+  if (weaponSelect == 7) fireWeapon8(mouse_X, mouse_Y);
 }
 
 /* ---------------------------update------------------------------ */
@@ -170,6 +179,7 @@ let update = function () {
     for (let i = 0; i <= Math.random() * 3; i++) {
       randomlyGenerateEnemy();
     }
+    asteroid_lvl3();
   }
 
   // Weapon upgrades
@@ -179,6 +189,7 @@ let update = function () {
   if (score == 40) weaponSelect = 4;
   if (score == 50) weaponSelect = 5;
   if (score == 60) weaponSelect = 6;
+  if (score == 70) weaponSelect = 7;
 
   playerEnemyHitDetection();
   playerWeaponHitDetection();
@@ -202,8 +213,8 @@ let update = function () {
   }
 
   if (player1.hp <= 0) {
-    let timeSurvived = Date.now() - timeStarted;
-    console.log('you lost!  You survived for', timeSurvived, 'ms.');
+    console.log('You killed ', score, ' enemys but missed ', missed);
+    alert('You killed ' + score + ' enemys but missed ' + missed)
     startNewGame();
   }
   drawEntity(player1);
@@ -216,6 +227,7 @@ let startNewGame = function () {
   player1.hp = 10;
   frameCount = 0;
   score = 0;
+  missed = 0
   enemyList = {};
   weaponsFire = {};
   weaponSelect = 0;
