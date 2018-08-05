@@ -89,9 +89,9 @@ let drawEntity = function (draw) {
   ctx.save();
   ctx.fillStyle = draw.color;
   ctx.fillRect(draw.x - draw.width / 2, draw.y - draw.height / 2, draw.width, draw.height);
-  
-  ctx.restore();
   enemyVFX();
+  ctx.restore();
+  
 };
 
 let getDistanceBetweenEntity = function (entity1, entity2) {

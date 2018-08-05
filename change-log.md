@@ -10,6 +10,9 @@
 
 # 2018-08-04
 - Added a scrolling stary background
+- Added static asteroid images
+- Set Asteroid VFX data to json file.
+- Expanded FVX to lvl2 and lvl1 asteroids as well as randoms.
 
 # 2018-08-03
 - Added two more fireing modes, alternating fire, and cycle fire.
