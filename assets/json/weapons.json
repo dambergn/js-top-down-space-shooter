@@ -1,0 +1,37 @@
+{
+  "type": {
+    "Projectile": "./img/VFX/weapons/custom/",
+    "Pulse": "./img/VFX/weapons/custom/",
+    "Lazer": "./img/VFX/weapons/custom/",
+    "Missile": "./img/VFX/weapons/custom/"
+  },
+  "Projectile": [
+    "none",
+    "none"
+  ],
+  "Pulse": [
+    "blueOmni1.png",
+    "greenPlasmaUp1.png",
+    "yellowPlasmaUp1.png"
+  ],
+  "Lazer": [
+    "blueLaserHorizontal2.png",
+    "blueLaserVerticle2.png",
+    "greenLaserHorizontal2.png",
+    "greenLaserVerticle2.png",
+    "orangeLaserHorizontal1.png",
+    "orangeLaserVerticle1.png",
+    "redLaserHorizontal1.png",
+    "redLaserHorizontal2.png",
+    "redLaserVerticle1.png",
+    "redLaserVerticle2.png",
+    "yellowLaserHorizontal1.png",
+    "yellowLaserHorizontal2.png",
+    "yellowLaserVerticle1.png",
+    "yellowLaserVerticle2.png"
+  ],
+  "Missile": [
+    "none",
+    "none"
+  ]
+}

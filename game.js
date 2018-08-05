@@ -6,6 +6,7 @@ let windowWidth = window.innerWidth;
 let canvasHeight = window.innerHeight - 6; // Y
 let canvasWidth = 500; // X
 setCanvas()
+const jsonData = [];
 let timeStarted = Date.now();
 let enemyList = {};
 let weaponsFire = {};
@@ -19,6 +20,9 @@ let startedFiring = 0;
 let fireRate = 0;
 let weaponSelect = 0;
 let isMobile = false;
+let protecting = 0;
+let bg = new Image();
+bg.src = "img/bg-stars-portrait-x500-y1800.png";
 
 // Detects if playing on a touch screen mobile device.
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
@@ -48,16 +52,28 @@ window.onresize = function (event) {
 };
 
 let player1 = {
-  name:'P1',
-  x:250,
-  y:600,
-  spdX:25,
-  spdY:5,
-  hp:10,
-  width:20,
-  height:20,
-  color:'green',
+  name: 'P1',
+  x: 250,
+  y: 600,
+  spdX: 25,
+  spdY: 5,
+  hp: 10,
+  width: 40,
+  height: 30,
+  color: 'green',
 };
+
+let player1VFX = function () {
+  let vfx_ship = new Image();
+  vfx_ship.src = "./img/VFX/ship-parts/custom/greenShip.png";
+  ctx.drawImage(
+    vfx_ship,
+    player1.x - (player1.width / 2),
+    player1.y - (player1.height / 2),
+    player1.width,
+    player1.height
+  )
+}
 
 let updateEntity = function (update) {
   updateEntityPosition(update);
@@ -84,9 +100,13 @@ let testCollisionRectRect = function (rect1, rect2) {
 
 let drawEntity = function (draw) {
   ctx.save();
-  ctx.fillStyle = draw.color;
-  ctx.fillRect(draw.x - draw.width / 2, draw.y - draw.height / 2, draw.width, draw.height);
+  // ctx.fillStyle = draw.color;
+  // ctx.fillRect(draw.x - draw.width / 2, draw.y - draw.height / 2, draw.width, draw.height);
+  player1VFX();
+  enemyVFX();
+  weaponVFX();
   ctx.restore();
+
 };
 
 let getDistanceBetweenEntity = function (entity1, entity2) {
@@ -115,7 +135,7 @@ let playerEnemyHitDetection = function () {
   for (let key in enemyList) {
     updateEntity(enemyList[key]);
     let isColliding = collisionDetection(player1, enemyList[key]);
-    if (enemyList[key].x > canvasWidth || enemyList[key].x < 0){
+    if (enemyList[key].x > canvasWidth || enemyList[key].x < 0) {
       delete enemyList[key];
     } else if (enemyList[key].y > canvasHeight) {
       missed++;
@@ -125,9 +145,7 @@ let playerEnemyHitDetection = function () {
       player1.hp = player1.hp - enemyList[key].hp;
       delete enemyList[key];
     }
-    
   }
-  
 }
 
 let playerWeaponHitDetection = function () {
@@ -137,7 +155,7 @@ let playerWeaponHitDetection = function () {
       if (isColliding2) {
         enemyList[key1].hp = enemyList[key1].hp - weaponsFire[key2].damage
         delete weaponsFire[key2];
-        if (enemyList[key1].hp < 1){
+        if (enemyList[key1].hp < 1) {
           score++;
           hpRegen++;
           // console.log(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
@@ -170,10 +188,23 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   if (weaponSelect == 7) fireWeapon8(mouse_X, mouse_Y);
 }
 
+let background_y = 0
+let drawBackground = function () {
+  // debugger;
+  if (background_y >= 0) {
+    console.log('background reset')
+    background_y = background_y - 889
+  } else {
+    background_y++;
+  }
+  ctx.drawImage(bg, 0, background_y)
+}
+
 /* ---------------------------update------------------------------ */
 let update = function () {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);//clears old data
   frameCount++;
+  drawBackground();
 
   if (frameCount % 100 === 0) {
     for (let i = 0; i <= Math.random() * 3; i++) {
@@ -231,9 +262,11 @@ let startNewGame = function () {
   enemyList = {};
   weaponsFire = {};
   weaponSelect = 0;
+  if(frameCount == 50){
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
   randomlyGenerateEnemy();
+  }
 }
 
 window.onload = function () {// Prevents function call till after page has fully loaded.
