@@ -13,6 +13,7 @@
 - Added static asteroid images
 - Set Asteroid VFX data to json file.
 - Expanded FVX to lvl2 and lvl1 asteroids as well as randoms.
+- Changed random asteroids to new grapic and gave red one to random lvl2.
 
 # 2018-08-03
 - Added two more fireing modes, alternating fire, and cycle fire.
