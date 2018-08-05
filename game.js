@@ -19,6 +19,9 @@ let startedFiring = 0;
 let fireRate = 0;
 let weaponSelect = 0;
 let isMobile = false;
+let protecting = 0;
+let bg = new Image();
+bg.src = "img/bg-stars-portrait-x500-y1800.png";
 
 // Detects if playing on a touch screen mobile device.
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
@@ -86,7 +89,9 @@ let drawEntity = function (draw) {
   ctx.save();
   ctx.fillStyle = draw.color;
   ctx.fillRect(draw.x - draw.width / 2, draw.y - draw.height / 2, draw.width, draw.height);
+  
   ctx.restore();
+  enemyVFX();
 };
 
 let getDistanceBetweenEntity = function (entity1, entity2) {
@@ -125,9 +130,7 @@ let playerEnemyHitDetection = function () {
       player1.hp = player1.hp - enemyList[key].hp;
       delete enemyList[key];
     }
-    
   }
-  
 }
 
 let playerWeaponHitDetection = function () {
@@ -170,10 +173,23 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   if (weaponSelect == 7) fireWeapon8(mouse_X, mouse_Y);
 }
 
+let background_y = 0
+let drawBackground = function() {
+  // debugger;
+  if(background_y >= 0){
+    console.log('background reset')
+    background_y = background_y -889
+  } else {
+    background_y++;
+  }
+  ctx.drawImage(bg, 0, background_y)
+}
+
 /* ---------------------------update------------------------------ */
 let update = function () {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);//clears old data
   frameCount++;
+  drawBackground();
 
   if (frameCount % 100 === 0) {
     for (let i = 0; i <= Math.random() * 3; i++) {

@@ -1,11 +1,15 @@
 # Things to add or improve.
-[]Create different types of enemy with unique aspects.
-[]Make asteroid enemys that break into smaller asteroids.
-[X]Give enemy different ammounts of HP.
-[X]Change weapon damage.
-[]Add dynamic and changeable player ships.
-[X]Detect window size and adjust play window accordingly.
-[]More spread progression
+- []Create different types of enemy with unique aspects.
+- []Make asteroid enemys that break into smaller asteroids.
+- [X]Give enemy different ammounts of HP.
+- [X]Change weapon damage.
+- []Add dynamic and changeable player ships.
+- [X]Detect window size and adjust play window accordingly.
+- []More spread progression
+- []Create options menue in top right hand corner.
+
+# 2018-08-04
+- Added a scrolling stary background
 
 # 2018-08-03
 - Added two more fireing modes, alternating fire, and cycle fire.
@@ -13,6 +17,7 @@
 - Player now takes damage equal to how much hp an enemy has left.
 - Added test ultimate weapon combining 2 other weapons.
 - Added another break to the lvl2 asteroids to lvl1 asteroids.
+- Fixed asteroids bouncing off walls and now get removed when out of bounds.
 
 # 2018-08-02
 - Fixed mobile touch screen and weapons on mobile device.
