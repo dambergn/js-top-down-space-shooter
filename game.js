@@ -6,6 +6,7 @@ let windowWidth = window.innerWidth;
 let canvasHeight = window.innerHeight - 6; // Y
 let canvasWidth = 500; // X
 setCanvas()
+const jsonData = [];
 let timeStarted = Date.now();
 let enemyList = {};
 let weaponsFire = {};

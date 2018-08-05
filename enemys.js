@@ -1,7 +1,5 @@
 'use strict';
 
-const jsonData = [];
-
 $.getJSON('./assets/json/asteroids-large.json', function (data) {
   // jsonData.push(JSON.stringify(data));
   jsonData.push(data)
@@ -32,7 +30,7 @@ let enemyVFX = function () {
   for (let key in enemyList) {
     if (enemyList[key].name === 'random') {
       let vfx_asteroids = new Image();
-      vfx_asteroids.src = jsonData[0].type.LA02 + jsonData[0].LA02[enemyList[key].vfx] + ".png";
+      vfx_asteroids.src = jsonData[0].type.LA03 + jsonData[0].LA03[enemyList[key].vfx] + ".png";
       // console.log("random hit")
       ctx.drawImage(
         vfx_asteroids,
@@ -64,6 +62,16 @@ let enemyVFX = function () {
     } else if (enemyList[key].name === 'asteroid lvl1') {
       let vfx_asteroids = new Image();
       vfx_asteroids.src = jsonData[0].type.LA01 + jsonData[0].LA01[enemyList[key].vfx] + ".png";
+      ctx.drawImage(
+        vfx_asteroids,
+        enemyList[key].x - (enemyList[key].width / 2),
+        enemyList[key].y - (enemyList[key].height / 2),
+        enemyList[key].width,
+        enemyList[key].height
+      )
+    } else if (enemyList[key].name === 'randomlvl2') {
+      let vfx_asteroids = new Image();
+      vfx_asteroids.src = jsonData[0].type.LA02 + jsonData[0].LA02[enemyList[key].vfx] + ".png";
       ctx.drawImage(
         vfx_asteroids,
         enemyList[key].x - (enemyList[key].width / 2),
@@ -117,9 +125,9 @@ let level_1_Enemy = function () {
   let name = 'randomlvl2'
   let x = Math.round(Math.random() * canvasWidth);
   let y = 0;
-  let height = 10 + Math.round(Math.random() * 30);
-  let width = 10 + Math.round(Math.random() * 30);
-  let vfx = 'none';
+  let height = 20 + Math.round(Math.random() * 20);
+  let width = 20 + Math.round(Math.random() * 20);
+  let vfx = 1 + Math.round(Math.random() * jsonData[0].LA01[0].length);
   let spdX = 0;
   let spdY = 2 + Math.round(Math.random() * 2);
   let color = 'orange';
