@@ -1,12 +1,22 @@
 # Things to add or improve.
-- []Create different types of enemy with unique aspects.
-- []Make asteroid enemys that break into smaller asteroids.
+- [X]Create different types of enemy with unique aspects.
+- [X]Make asteroid enemys that break into smaller asteroids.
 - [X]Give enemy different ammounts of HP.
 - [X]Change weapon damage.
 - []Add dynamic and changeable player ships.
 - [X]Detect window size and adjust play window accordingly.
 - []More spread progression
 - []Create options menue in top right hand corner.
+- []Add a space station at the bottom for asteroids to hit.
+- []Give space station HP and when destroyed game over.
+- []Make red asteroids explode and destory other asteroids in AOE.
+- []Add special boss asteroid to win the game.
+- []Refactor and optimize code for effecency.
+- []Add animated effects.
+- []look for a way to check performace.
+
+# 2018-08-05
+- updated change log and things to add/improve section.
 
 # 2018-08-04
 - Added a scrolling stary background
@@ -14,6 +24,7 @@
 - Set Asteroid VFX data to json file.
 - Expanded FVX to lvl2 and lvl1 asteroids as well as randoms.
 - Changed random asteroids to new grapic and gave red one to random lvl2.
+- Weapons now have grapics and are refrenced in json file.
 
 # 2018-08-03
 - Added two more fireing modes, alternating fire, and cycle fire.
