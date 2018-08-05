@@ -14,6 +14,11 @@
 - []Refactor and optimize code for effecency.
 - []Add animated effects.
 - []look for a way to check performace.
+- []look into web workers for multi threading
+- []instead of looping BG, tile it to work with differnt height screens.
+- []add space bar for fireing becuse touch pads that are the click button suck.
+- []refactor update and frame rate to be dynamic.
+- []center canvas in window.
 
 # 2018-08-05
 - updated change log and things to add/improve section.
