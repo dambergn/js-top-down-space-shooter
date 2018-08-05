@@ -87,7 +87,7 @@ let enemyVFX = function () {
     //   if (enemyList[key].vfx < -15) enemyList[key].vfx = -1
     // }
   }
-  
+
 }
 
 function afterEffect(option, x, y) {
