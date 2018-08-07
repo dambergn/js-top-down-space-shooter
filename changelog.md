@@ -20,6 +20,9 @@
 - []refactor update and frame rate to be dynamic.
 - []center canvas in window.
 
+# 2018-08-06
+- Fixed background into a streaming bg instead of a rotating one.
+
 # 2018-08-05
 - updated change log and things to add/improve section.
 
