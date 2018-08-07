@@ -22,7 +22,7 @@ let weaponSelect = 0;
 let isMobile = false;
 let protecting = 0;
 let bg = new Image();
-bg.src = "img/bg-stars-portrait-x500-y1800.png";
+bg.src = "img/bg-stars-portrait-x500-y500.png";
 
 // Detects if playing on a touch screen mobile device.
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
@@ -39,7 +39,12 @@ function setCanvas() {
   if (window.innerWidth > 500) {
     canvasWidth = 500;
   } else {
-    canvasWidth = window.innerWidth - 10;
+    canvasWidth = window.innerWidth;
+  }
+  if (window.innerHeight > 1000){
+    canvasHeight = 1000;
+  } else {
+    canvasHeight = window.innerHeight - 6;
   }
   document.getElementById('ctx').height = canvasHeight;
   document.getElementById('ctx').width = canvasWidth;
@@ -188,16 +193,50 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
   if (weaponSelect == 7) fireWeapon8(mouse_X, mouse_Y);
 }
 
-let background_y = 0
+let background_y = -2000
+let background = { }
+
+let Background = function (id, bg, x, y) {
+  let back = {
+    id:id,
+    bg:bg,
+    x:x,
+    y:y,
+  }
+  background[id] = back;
+}
+// for (let i = 0; i < Math.ceil(canvasHeight / 500); i++){
+//   Background(Math.random(), bg, 0, ((i + 500) * -1));
+//   console.log('initial bg')
+// }
+
+Background(Math.random(), bg, 0, -500);
+Background(Math.random(), bg, 0, 0);
+Background(Math.random(), bg, 0, 500);
+Background(Math.random(), bg, 0, 1000);
+
 let drawBackground = function () {
   // debugger;
   if (background_y >= 0) {
     console.log('background reset')
-    background_y = background_y - 889
+    background_y = background_y
   } else {
     background_y++;
   }
-  ctx.drawImage(bg, 0, background_y)
+
+  for(let key in background){
+    ctx.drawImage(bg, 0, background[key].y)
+    background[key].y++;
+    if(background[key].y === 0){
+      console.log('creating new background')
+      Background(Math.random(), bg, 0, -500);
+    } else if(background[key].y === canvasHeight + 500) {
+      delete background[key];
+    }
+  }
+  // ctx.drawImage(bg, 0, canvasHeight - 1500)
+  // ctx.drawImage(bg, 0, canvasHeight - 1000)
+  // ctx.drawImage(bg, 0, canvasHeight - 500)
 }
 
 /* ---------------------------update------------------------------ */
