@@ -27,6 +27,28 @@ let paused = false;
 let bg = new Image();
 bg.src = "img/bg-stars-portrait-x500-y500.png";
 
+// Create audio objects
+let projectile = new Audio('assets/SFX/projectile_1.wav');
+let pulse = new Audio('assets/SFX/pulse_shot_1.wav');
+let asteroid_hit = new Audio('assets/SFX/small_asteroid_hit_1.wav');
+let space_station_hit = new Audio('assets/SFX/space_station_hit_1.wav');
+
+// Preload audio objects so that we can play as fast as we need to
+projectile.preload = 'auto';
+projectile.load();
+pulse.preload = 'auto';
+pulse.load();
+asteroid_hit.preload = 'auto';
+asteroid_hit.load();
+space_station_hit.preload = 'auto';
+space_station_hit.load();
+
+// funciton to play sound takes an audio objects as an argument
+function playSound(sfx) {
+  var sound = sfx.cloneNode();
+  sound.play();
+}
+
 // Detects if playing on a touch screen mobile device.
 if (/Android|webOS|iPhone|iPad|BlackBerry|Windows Phone|Opera Mini|IEMobile|Mobile/i.test(navigator.userAgent)) {
   console.log('mobile deveice')
@@ -161,8 +183,15 @@ let playerEnemyHitDetection = function () {
       let isColliding2 = collisionDetection(npcList[key2], enemyList[key]);
       if (isColliding2) {
         npcList[key2].hp = npcList[key2].hp - enemyList[key].hp;
+        playSound(space_station_hit);
         delete enemyList[key];
-        console.log('space station hit: ', npcList[key2].hp)
+        // console.log('space station hit: ', npcList[key2].hp)
+        if (npcList[key2].name === 'space station' && npcList[key2].hp <= 0){
+          console.log('Space Station Destroyed, Game Over!')
+          delete npcList[key2];
+        } else if (npcList[key2].hp <= 0){
+          delete npcList[key2];
+        }
       }
     }
   }
@@ -178,6 +207,7 @@ let playerWeaponHitDetection = function () {
         if (enemyList[key1].hp < 1) {
           score++;
           hpRegen++;
+          // playSound(asteroid_hit)
           // console.log(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
           afterEffect(enemyList[key1].afterDestroyed, enemyList[key1].x, enemyList[key1].y)
           delete enemyList[key1];

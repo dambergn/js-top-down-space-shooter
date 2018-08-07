@@ -7,8 +7,8 @@
 - [X]Detect window size and adjust play window accordingly.
 - []More spread progression
 - []Create options menue in top right hand corner.
-- []Add a space station at the bottom for asteroids to hit.
-- []Give space station HP and when destroyed game over.
+- [X]Add a space station at the bottom for asteroids to hit.
+- [/]Give space station HP and when destroyed game over.
 - []Make red asteroids explode and destory other asteroids in AOE.
 - []Add special boss asteroid to win the game.
 - []Refactor and optimize code for effecency.
@@ -18,7 +18,10 @@
 - [X]instead of looping BG, tile it to work with differnt height screens.
 - [X]add space bar for fireing becuse touch pads that are the click button suck.
 - []refactor update and frame rate to be dynamic.
-- []center canvas in window.
+- [X]center canvas in window.
+
+# 2018-08-07
+- Added some basic SFX.
 
 # 2018-08-06
 - Fixed background into a streaming bg instead of a rotating one.

@@ -74,6 +74,7 @@ let fireWeapon = function (mouseX, mouseY) {
 
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
   Weapon(id, x, y, vfx, spdX, spdY, width, height, color, type, fireRate, damage);
+  playSound(projectile)
 }
 
 // Single shot increaded rate of fire.
@@ -98,6 +99,7 @@ let fireWeapon2 = function (mouseX, mouseY) {
 
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
   Weapon(id, x, y, vfx, spdX, spdY, width, height, color, type, fireRate, damage);
+  playSound(projectile)
 }
 
 // Dual Fire
@@ -123,6 +125,7 @@ let fireWeapon3 = function (mouseX, mouseY) {
   // console.log('created: ', id, x, y, spdX, spdY, width, height, color, type);
   Weapon(id, x - 4, y, vfx, spdX, spdY, width, height, color, type, fireRate, damage);
   Weapon(id + 1, x +3 , y, vfx, spdX, spdY, width, height, color, type, fireRate, damage);
+  playSound(pulse)
 }
 
 // Alternating Fire
@@ -151,6 +154,7 @@ let fireWeapon4 = function (mouseX, mouseY) {
     Weapon(id, x + 4, y, vfx, spdX, spdY, width, height, color, type, fireRate, damage);
   }
   altFire = !altFire;
+  playSound(pulse)
 }
 
 // Spread Fire
