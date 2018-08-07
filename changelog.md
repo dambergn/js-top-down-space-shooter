@@ -24,6 +24,7 @@
 - Fixed background into a streaming bg instead of a rotating one.
 - Added space bar to firing.
 - Added final asteroid boss but does not spawn yet.
+- Added space station with HP and a spawn for the final asteroid.
 
 # 2018-08-05
 - updated change log and things to add/improve section.
