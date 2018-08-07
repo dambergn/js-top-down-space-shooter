@@ -23,6 +23,7 @@
 # 2018-08-06
 - Fixed background into a streaming bg instead of a rotating one.
 - Added space bar to firing.
+- Added final asteroid boss but does not spawn yet.
 
 # 2018-08-05
 - updated change log and things to add/improve section.

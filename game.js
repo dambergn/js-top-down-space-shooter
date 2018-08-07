@@ -218,8 +218,8 @@ Background(Math.random(), bg, 0, 1000);
 let drawBackground = function () {
   // debugger;
   if (background_y >= 0) {
-    console.log('background reset')
-    background_y = background_y
+    // console.log('background reset')
+    // background_y = background_y
   } else {
     background_y++;
   }
@@ -245,7 +245,7 @@ let update = function () {
   frameCount++;
   drawBackground();
 
-  if (frameCount % 100 === 0) {
+  if (frameCount % 150 === 0) {
     for (let i = 0; i <= Math.random() * 3; i++) {
       randomlyGenerateEnemy();
     }
