@@ -224,7 +224,7 @@ let fireWeapon7 = function (mouseX, mouseY) {
   let spdY = -20;
   let color = 'red';
   let type = 'beam';
-  let damage = 10;
+  let damage = 3;
 
   fireRate = 25;
 

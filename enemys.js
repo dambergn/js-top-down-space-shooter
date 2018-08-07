@@ -78,6 +78,16 @@ let enemyVFX = function () {
         enemyList[key].width,
         enemyList[key].height
       )
+    } else if (enemyList[key].name === 'asteroid final') {
+      let vfx_asteroids = new Image();
+      vfx_asteroids.src = "./img/VFX/asteroids/asteroid_boss.png";
+      ctx.drawImage(
+        vfx_asteroids,
+        enemyList[key].x - (enemyList[key].width / 2),
+        enemyList[key].y - (enemyList[key].height / 2),
+        enemyList[key].width,
+        enemyList[key].height
+      )
     }
     // if (enemyList[key].vfx > 0) {
     //   enemyList[key].vfx++;
@@ -187,3 +197,19 @@ let asteroid_lvl3 = function () {
   Enemy(id, name, x, y, vfx, spdX, spdY, width, height, color, hp, afterDestroyed)
 }
 
+let asteroid_final = function () {
+  let id = Math.random();
+  let name = 'asteroid final'
+  let x = canvasWidth / 2;
+  let y = -150;
+  let height = 300;
+  let width = 200;
+  let vfx = null;
+  let spdX = 0;
+  let spdY = .5;
+  let color = '#404040';
+  let hp = 200;
+  let afterDestroyed = 'lvl complete'
+
+  Enemy(id, name, x, y, vfx, spdX, spdY, width, height, color, hp, afterDestroyed)
+}
