@@ -15,13 +15,14 @@
 - []Add animated effects.
 - []look for a way to check performace.
 - []look into web workers for multi threading
-- []instead of looping BG, tile it to work with differnt height screens.
-- []add space bar for fireing becuse touch pads that are the click button suck.
+- [X]instead of looping BG, tile it to work with differnt height screens.
+- [X]add space bar for fireing becuse touch pads that are the click button suck.
 - []refactor update and frame rate to be dynamic.
 - []center canvas in window.
 
 # 2018-08-06
 - Fixed background into a streaming bg instead of a rotating one.
+- Added space bar to firing.
 
 # 2018-08-05
 - updated change log and things to add/improve section.

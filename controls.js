@@ -88,7 +88,7 @@ document.onkeydown = function (event) {
   } else if (event.keyCode === 80) { //p
     paused = !paused;
   } else if (event.keyCode === 32) { //space
-    space = true;
+    firing = true;
   } else if (event.keyCode === 49) { // 1
     weaponSelect = 0;
   } else if (event.keyCode === 50) { // 2
@@ -114,6 +114,6 @@ document.onkeyup = function (event) {
     playerLeft.pressingUp = false;
     playerRight.pressingUp = false;
   } else if (event.keyCode === 32) { //space
-    space = false;
+    firing = false;
   }
 };
