@@ -208,24 +208,7 @@ let asteroid_final = function () {
   let spdX = 0;
   let spdY = .5;
   let color = '#404040';
-  let hp = 50;
-  let afterDestroyed = 'lvl complete'
-
-  Enemy(id, name, x, y, vfx, spdX, spdY, width, height, color, hp, afterDestroyed)
-}
-
-let space_station = function () {
-  let id = Math.random();
-  let name = 'asteroid lvl3'
-  let x = canvasWidth / 2;
-  let y = canvasHeight - 50;
-  let height = 150;
-  let width = 150;
-  let vfx = "./img/VFX/asteroids/asteroid_boss.png"
-  let spdX = 0;
-  let spdY = 0;
-  let color = '#404040';
-  let hp = 100;
+  let hp = 200;
   let afterDestroyed = 'lvl complete'
 
   Enemy(id, name, x, y, vfx, spdX, spdY, width, height, color, hp, afterDestroyed)

@@ -8,8 +8,10 @@ let canvasWidth = 500; // X
 setCanvas()
 const jsonData = [];
 let timeStarted = Date.now();
+let background = {};
 let enemyList = {};
 let weaponsFire = {};
+let npcList = {};
 let frameCount = 0;
 let score = 0;
 let missed = 0;
@@ -21,6 +23,7 @@ let fireRate = 0;
 let weaponSelect = 0;
 let isMobile = false;
 let protecting = 0;
+let paused = false;
 let bg = new Image();
 bg.src = "img/bg-stars-portrait-x500-y500.png";
 
@@ -37,11 +40,11 @@ function setCanvas() {
   windowWidth = window.innerWidth;
   canvasHeight = windowHeight - 6;
   if (window.innerWidth > 500) {
-    canvasWidth = 500;
+    canvasWidth = 500 - 8;
   } else {
     canvasWidth = window.innerWidth;
   }
-  if (window.innerHeight > 1000){
+  if (window.innerHeight > 1000) {
     canvasHeight = 1000;
   } else {
     canvasHeight = window.innerHeight - 6;
@@ -70,7 +73,7 @@ let player1 = {
 
 let player1VFX = function () {
   let vfx_ship = new Image();
-  vfx_ship.src = "./img/VFX/ship-parts/custom/greenShip.png";
+  vfx_ship.src = "./img/VFX/ships/1B.png";
   ctx.drawImage(
     vfx_ship,
     player1.x - (player1.width / 2),
@@ -107,9 +110,11 @@ let drawEntity = function (draw) {
   ctx.save();
   // ctx.fillStyle = draw.color;
   // ctx.fillRect(draw.x - draw.width / 2, draw.y - draw.height / 2, draw.width, draw.height);
+  npcVFX();
   player1VFX();
   enemyVFX();
   weaponVFX();
+
   ctx.restore();
 
 };
@@ -149,6 +154,16 @@ let playerEnemyHitDetection = function () {
     if (isColliding) {
       player1.hp = player1.hp - enemyList[key].hp;
       delete enemyList[key];
+    }
+  }
+  for (let key2 in npcList) {
+    for (let key in enemyList) {
+      let isColliding2 = collisionDetection(npcList[key2], enemyList[key]);
+      if (isColliding2) {
+        npcList[key2].hp = npcList[key2].hp - enemyList[key].hp;
+        delete enemyList[key];
+        console.log('space station hit: ', npcList[key2].hp)
+      }
     }
   }
 }
@@ -194,14 +209,14 @@ let fireSelectedWeapon = function (mouse_X, mouse_Y) {
 }
 
 let background_y = -2000
-let background = { }
+
 
 let Background = function (id, bg, x, y) {
   let back = {
-    id:id,
-    bg:bg,
-    x:x,
-    y:y,
+    id: id,
+    bg: bg,
+    x: x,
+    y: y,
   }
   background[id] = back;
 }
@@ -224,13 +239,13 @@ let drawBackground = function () {
     background_y++;
   }
 
-  for(let key in background){
+  for (let key in background) {
     ctx.drawImage(bg, 0, background[key].y)
     background[key].y++;
-    if(background[key].y === 0){
+    if (background[key].y === 0) {
       console.log('creating new background')
       Background(Math.random(), bg, 0, -500);
-    } else if(background[key].y === canvasHeight + 500) {
+    } else if (background[key].y === canvasHeight + 500) {
       delete background[key];
     }
   }
@@ -241,6 +256,10 @@ let drawBackground = function () {
 
 /* ---------------------------update------------------------------ */
 let update = function () {
+  if (paused) {
+    console.log('Paused: ', frameCount);
+    return;
+  };
   ctx.clearRect(0, 0, canvasWidth, canvasHeight);//clears old data
   frameCount++;
   drawBackground();
@@ -250,6 +269,10 @@ let update = function () {
       randomlyGenerateEnemy();
     }
     asteroid_lvl3();
+  }
+
+  if (frameCount === 2000) {
+    asteroid_final()
   }
 
   // Weapon upgrades
@@ -287,6 +310,9 @@ let update = function () {
     alert('You killed ' + score + ' enemys but missed ' + missed)
     startNewGame();
   }
+
+
+
   drawEntity(player1);
   ctx.fillText(player1.hp + " HP", 0, 30);
   ctx.fillText('score: ' + score, 200, 30);
@@ -301,15 +327,16 @@ let startNewGame = function () {
   enemyList = {};
   weaponsFire = {};
   weaponSelect = 0;
-  if(frameCount == 50){
-  randomlyGenerateEnemy();
-  randomlyGenerateEnemy();
-  randomlyGenerateEnemy();
+  if (frameCount == 50) {
+    randomlyGenerateEnemy();
+    randomlyGenerateEnemy();
+    randomlyGenerateEnemy();
   }
 }
 
 window.onload = function () {// Prevents function call till after page has fully loaded.
   startNewGame();
+  space_station()
 };
 
 
