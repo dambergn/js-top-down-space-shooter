@@ -1,7 +1,8 @@
 'use strict';
 
 $.getJSON('./assets/json/weapons.json', function (data) {
-  jsonData.push(data)
+  // jsonData.push(data)
+  jsonData.weapons = data
   // console.log(jsonData);
 });
 
@@ -30,7 +31,7 @@ let weaponVFX = function () {
   for (let key in weaponsFire) {
     if (weaponsFire[key].type === 'projectile') {
       let vfx_weaponsFire = new Image();
-      vfx_weaponsFire.src = jsonData[0].type.Pulse + jsonData[0].Pulse[weaponsFire[key].vfx];
+      vfx_weaponsFire.src = jsonData.weapons.type.Pulse + jsonData.weapons.Pulse[weaponsFire[key].vfx];
       ctx.drawImage(
         vfx_weaponsFire,
         weaponsFire[key].x - (weaponsFire[key].width / 2),
@@ -40,7 +41,7 @@ let weaponVFX = function () {
       )
     } else if (weaponsFire[key].type === 'beam') {
       let vfx_weaponsFire = new Image();
-      vfx_weaponsFire.src = jsonData[0].type.Lazer + jsonData[0].Lazer[weaponsFire[key].vfx];
+      vfx_weaponsFire.src = jsonData.weapons.type.Lazer + jsonData.weapons.Lazer[weaponsFire[key].vfx];
       ctx.drawImage(
         vfx_weaponsFire,
         weaponsFire[key].x - (weaponsFire[key].width / 2),

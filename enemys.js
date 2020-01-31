@@ -1,7 +1,8 @@
 'use strict';
 
 $.getJSON('./assets/json/asteroids-large.json', function (data) {
-  jsonData.push(data)
+  // jsonData.push(data)
+  jsonData.enemy = data
   // console.log(jsonData);
 });
 
@@ -29,7 +30,7 @@ let enemyVFX = function () {
   for (let key in enemyList) {
     if (enemyList[key].name === 'random') {
       let vfx_asteroids = new Image();
-      vfx_asteroids.src = jsonData[1].type.LA03 + jsonData[1].LA03[enemyList[key].vfx] + ".png";
+      vfx_asteroids.src = jsonData.enemy.type.LA03 + jsonData.enemy.LA03[enemyList[key].vfx] + ".png";
       // console.log("random hit")
       ctx.drawImage(
         vfx_asteroids,
@@ -40,7 +41,7 @@ let enemyVFX = function () {
       )
     } else if (enemyList[key].name === 'asteroid lvl3') {
       let vfx_asteroids = new Image();
-      vfx_asteroids.src = jsonData[1].type.LA01 + jsonData[1].LA01[enemyList[key].vfx] + ".png";
+      vfx_asteroids.src = jsonData.enemy.type.LA01 + jsonData.enemy.LA01[enemyList[key].vfx] + ".png";
       ctx.drawImage(
         vfx_asteroids,
         enemyList[key].x - (enemyList[key].width / 2),
@@ -50,7 +51,7 @@ let enemyVFX = function () {
       )
     } else if (enemyList[key].name === 'asteroid lvl2') {
       let vfx_asteroids = new Image();
-      vfx_asteroids.src = jsonData[1].type.LA01 + jsonData[1].LA01[enemyList[key].vfx] + ".png";
+      vfx_asteroids.src = jsonData.enemy.type.LA01 + jsonData.enemy.LA01[enemyList[key].vfx] + ".png";
       ctx.drawImage(
         vfx_asteroids,
         enemyList[key].x - (enemyList[key].width / 2),
@@ -60,7 +61,7 @@ let enemyVFX = function () {
       )
     } else if (enemyList[key].name === 'asteroid lvl1') {
       let vfx_asteroids = new Image();
-      vfx_asteroids.src = jsonData[1].type.LA01 + jsonData[1].LA01[enemyList[key].vfx] + ".png";
+      vfx_asteroids.src = jsonData.enemy.type.LA01 + jsonData.enemy.LA01[enemyList[key].vfx] + ".png";
       ctx.drawImage(
         vfx_asteroids,
         enemyList[key].x - (enemyList[key].width / 2),
@@ -70,7 +71,7 @@ let enemyVFX = function () {
       )
     } else if (enemyList[key].name === 'randomlvl2') {
       let vfx_asteroids = new Image();
-      vfx_asteroids.src = jsonData[1].type.LA02 + jsonData[1].LA02[enemyList[key].vfx] + ".png";
+      vfx_asteroids.src = jsonData.enemy.type.LA02 + jsonData.enemy.LA02[enemyList[key].vfx] + ".png";
       ctx.drawImage(
         vfx_asteroids,
         enemyList[key].x - (enemyList[key].width / 2),
@@ -120,7 +121,7 @@ let randomlyGenerateEnemy = function () {
   let y = 0;
   let height = 20 + Math.round(Math.random() * 30);
   let width = 20 + Math.round(Math.random() * 30);
-  let vfx = 1 + Math.round(Math.random() * jsonData[1].LA03[0].length);
+  let vfx = 1 + Math.round(Math.random() * jsonData.enemy.LA03[0].length);
   let spdX = 0;
   let spdY = 2 + Math.round(Math.random() * 2);
   let color = 'red';
@@ -136,7 +137,7 @@ let level_1_Enemy = function () {
   let y = 0;
   let height = 20 + Math.round(Math.random() * 20);
   let width = 20 + Math.round(Math.random() * 20);
-  let vfx = 1 + Math.round(Math.random() * jsonData[1].LA01[0].length);
+  let vfx = 1 + Math.round(Math.random() * jsonData.enemy.LA01[0].length);
   let spdX = 0;
   let spdY = 2 + Math.round(Math.random() * 2);
   let color = 'orange';
@@ -170,7 +171,7 @@ let asteroid_lvl2 = function (x, y, spdX) {
   // let y = 0;
   let height = 45;
   let width = 45;
-  let vfx = 1 + Math.round(Math.random() * jsonData[1].LA01[0].length);
+  let vfx = 1 + Math.round(Math.random() * jsonData.enemy.LA01[0].length);
   // let spdX = 0;
   let spdY = 1 + Math.round(Math.random() * 2);
   let color = '#808080';
@@ -187,7 +188,7 @@ let asteroid_lvl3 = function () {
   let y = 0;
   let height = 75;
   let width = 75;
-  let vfx = 1 + Math.round(Math.random() * jsonData[1].LA01[0].length);
+  let vfx = 1 + Math.round(Math.random() * jsonData.enemy.LA01[0].length);
   let spdX = 0;
   let spdY = 2;
   let color = '#404040';
