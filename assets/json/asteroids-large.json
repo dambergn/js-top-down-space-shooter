@@ -1,9 +1,9 @@
 {
   "type": {
-    "LA01": "./img/VFX/asteroids/large/custom/",
-    "LA02": "./img/VFX/asteroids/large/custom/",
-    "LA03": "./img/VFX/asteroids/large/custom/",
-    "Boss": "./img/VFX/asteroids/large/custom/"
+    "LA01": "./assets/VFX/asteroids/large/custom/",
+    "LA02": "./assets/VFX/asteroids/large/custom/",
+    "LA03": "./assets/VFX/asteroids/large/custom/",
+    "Boss": "./assets/VFX/asteroids/large/custom/"
   },
   "LA01": [
     "LA01-1",

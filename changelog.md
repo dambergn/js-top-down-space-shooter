@@ -1,24 +1,29 @@
 # Things to add or improve.
-- [X]Create different types of enemy with unique aspects.
-- [X]Make asteroid enemys that break into smaller asteroids.
-- [X]Give enemy different ammounts of HP.
-- [X]Change weapon damage.
-- []Add dynamic and changeable player ships.
-- [X]Detect window size and adjust play window accordingly.
-- []More spread progression
-- []Create options menue in top right hand corner.
-- []Add a space station at the bottom for asteroids to hit.
-- []Give space station HP and when destroyed game over.
-- []Make red asteroids explode and destory other asteroids in AOE.
-- []Add special boss asteroid to win the game.
-- []Refactor and optimize code for effecency.
-- []Add animated effects.
-- []look for a way to check performace.
-- []look into web workers for multi threading
-- [X]instead of looping BG, tile it to work with differnt height screens.
-- [X]add space bar for fireing becuse touch pads that are the click button suck.
-- []refactor update and frame rate to be dynamic.
-- []center canvas in window.
+- [X] Create different types of enemy with unique aspects.
+- [X] Make asteroid enemys that break into smaller asteroids.
+- [X] Give enemy different ammounts of HP.
+- [X] Change weapon damage.
+- [ ] Add dynamic and changeable player ships.
+- [X] Detect window size and adjust play window accordingly.
+- [ ] More spread progression
+- [ ] Create options menue in top right hand corner.
+- [X] Add a space station at the bottom for asteroids to hit.
+- [/] Give space station HP and when destroyed game over.
+- [ ] Make red asteroids explode and destory other asteroids in AOE.
+- [/] Add special boss asteroid to win the game.
+- [ ] Refactor and optimize code for effecency.
+- [ ] Add animated effects.
+- [ ] Look for a way to check performace.
+- [ ] Look into web workers for multi threading
+- [X] Instead of looping BG, tile it to work with differnt height screens.
+- [X] Add space bar for fireing becuse touch pads that are the click button suck.
+- [ ] Refactor update and frame rate to be dynamic.
+- [X] Center canvas in window.
+
+# 2020-01-31
+- Fixed json loading bug by converting it to an object instead of an array.
+- Updated readme and jquery file.
+- Moved VFX folder to assets and modified pointers to reflect.
 
 # 2018-08-06
 - Fixed background into a streaming bg instead of a rotating one.

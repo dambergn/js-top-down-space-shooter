@@ -22,7 +22,7 @@ let npcVFX = function () {
   for (let key in npcList) {
     if (npcList[key].name === 'space station') {
       let vfx_npc = new Image();
-      vfx_npc.src = "./img/VFX/WB_base_d1.png";
+      vfx_npc.src = "./assets/VFX/WB_base_d1.png";
       // console.log("space station hit")
       ctx.drawImage(
         vfx_npc,

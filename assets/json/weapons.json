@@ -1,9 +1,9 @@
 {
   "type": {
-    "Projectile": "./img/VFX/weapons/custom/",
-    "Pulse": "./img/VFX/weapons/custom/",
-    "Lazer": "./img/VFX/weapons/custom/",
-    "Missile": "./img/VFX/weapons/custom/"
+    "Projectile": "./assets/VFX/weapons/custom/",
+    "Pulse": "./assets/VFX/weapons/custom/",
+    "Lazer": "./assets/VFX/weapons/custom/",
+    "Missile": "./assets/VFX/weapons/custom/"
   },
   "Projectile": [
     "none",

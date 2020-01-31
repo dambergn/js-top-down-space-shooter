@@ -81,7 +81,7 @@ let enemyVFX = function () {
       )
     } else if (enemyList[key].name === 'asteroid final') {
       let vfx_asteroids = new Image();
-      vfx_asteroids.src = "./img/VFX/asteroids/asteroid_boss.png";
+      vfx_asteroids.src = "./assets/VFX/asteroids/asteroid_boss.png";
       ctx.drawImage(
         vfx_asteroids,
         enemyList[key].x - (enemyList[key].width / 2),

@@ -73,7 +73,7 @@ let player1 = {
 
 let player1VFX = function () {
   let vfx_ship = new Image();
-  vfx_ship.src = "./img/VFX/ships/1B.png";
+  vfx_ship.src = "./assets/VFX/ships/1B.png";
   ctx.drawImage(
     vfx_ship,
     player1.x - (player1.width / 2),
